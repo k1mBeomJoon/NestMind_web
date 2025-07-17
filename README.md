@@ -1,2 +1,2 @@
-# NestMind_web
+# NestMind
 NestMind : Web Platform for Mindcare
