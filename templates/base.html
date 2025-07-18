@@ -17,5 +17,23 @@
     {% block content %}
     {% endblock %}
     {% include "footer.html" %}
+    <script>
+    // Footer show on scroll to bottom
+    document.addEventListener('DOMContentLoaded', function() {
+      var footer = document.querySelector('.custom-footer-v2');
+      function checkFooter() {
+        if (!footer) return;
+        var scrollBottom = window.scrollY + window.innerHeight;
+        var docHeight = document.documentElement.scrollHeight;
+        if (scrollBottom >= docHeight - 2) {
+          footer.classList.remove('footer-hidden');
+        } else {
+          footer.classList.add('footer-hidden');
+        }
+      }
+      window.addEventListener('scroll', checkFooter);
+      checkFooter();
+    });
+    </script>
     </body>
 </html>

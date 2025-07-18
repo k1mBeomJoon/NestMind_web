@@ -1,13 +1,27 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>메인 페이지</title>
-</head>
-<body>
-    {% extends 'base.html' %}
-    {% block content %}
-    <h1>메인 페이지입니다.</h1>
-    {% endblock %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="mainpage-center-container">
+    <img src="{% static 'mainpage_design.png' %}" alt="main visual" class="mainpage-image" />
+</div>
+<div class="mainpage-quickmenu-section">
+    <div class="mainpage-quickmenu-list">
+        <div class="mainpage-quickmenu-item">
+            <img src="{% static 'mainpage_quickmenu_1.png' %}" alt="정신건강 정보" />
+            <div class="mainpage-quickmenu-label">정신건강 정보 알아보기</div>
+        </div>
+        <div class="mainpage-quickmenu-item">
+            <img src="{% static 'mainpage_quickmenu_2.png' %}" alt="자가 관리 방법" />
+            <div class="mainpage-quickmenu-label">자가 관리 방법 알아보기</div>
+        </div>
+        <div class="mainpage-quickmenu-item">
+            <img src="{% static 'mainpage_quickmenu_3.png' %}" alt="심리 검사 바로가기" />
+            <div class="mainpage-quickmenu-label">심리 검사 바로가기</div>
+        </div>
+        <div class="mainpage-quickmenu-item">
+            <img src="{% static 'mainpage_quickmenu_4.png' %}" alt="고객지원 센터 바로가기" />
+            <div class="mainpage-quickmenu-label">고객지원 센터 바로가기</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,24 +1,91 @@
-<!-- Responsive navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container px-5">
-        <a class="navbar-brand" href="#!">My Project</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/company">Company</a></li>
-                <li class="nav-item"><a class="nav-link" href="/product">Product</a></li>
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <form action="{% url 'accounts:logout' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="nav-link">{{ user.username }} (logout)</button>
-                    </form>
+{% load static %}
+<!-- Custom Navigation Bar -->
+<nav class="custom-navbar">
+    <div class="custom-navbar-container">
+        <div class="custom-navbar-left">
+            <a href="/" class="custom-navbar-brand">NestMind</a>
+            <ul class="custom-navbar-menu">
+                <li class="has-dropdown">
+                    <span class="menu-label">정신건강 정보</span>
+                    <div class="menu-dot"></div>
+                    <ul class="dropdown-menu">
+                        <li>스트레스</li>
+                        <li>불안증</li>
+                        <li>우울증</li>
+                        <li>정신증</li>
+                        <li>번아웃</li>
+                        <li>자존감</li>
+                        <li>감정 기록 / 조울증</li>
+                        <li>중독</li>
+                        <li>수면 / 식욕</li>
+                    </ul>
                 </li>
-                {% else %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">login</a></li>
-                {% endif %}
+                <li class="has-dropdown">
+                    <span class="menu-label">자가 관리 방법</span>
+                    <div class="menu-dot"></div>
+                    <ul class="dropdown-menu">
+                        <li>스트레스</li>
+                        <li>불안증</li>
+                        <li>우울증</li>
+                        <li>정신증</li>
+                        <li>번아웃</li>
+                        <li>자존감</li>
+                        <li>감정 기록 / 조울증</li>
+                        <li>중독</li>
+                        <li>수면 / 식욕</li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <span class="menu-label">검사 / 리포트</span>
+                    <div class="menu-dot"></div>
+                    <ul class="dropdown-menu">
+                        <li>연애유형 검사</li>
+                        <li>감정 표현 스타일 검사</li>
+                        <li>성향 유형 검사</li>
+                        <li>정신 건강 검사</li>
+                        <li>리포트 새엉하기</li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <span class="menu-label">질문 / 답변</span>
+                    <div class="menu-dot"></div>
+                    <ul class="dropdown-menu">
+                        <li>모두에게 질문하기</li>
+                        <li>모두에게 답변하기</li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <span class="menu-label">ABOUT US</span>
+                    <div class="menu-dot"></div>
+                    <ul class="dropdown-menu">
+                        <li>NestMind</li>
+                        <li>기업 History</li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <span class="menu-label">고객지원</span>
+                    <div class="menu-dot"></div>
+                    <ul class="dropdown-menu">
+                        <li>FAQ (자주 묻는 질문)</li>
+                        <li>1 : 1 문의</li>
+                        <li>공지사항</li>
+                    </ul>
+                </li>
             </ul>
+        </div>
+        <div class="custom-navbar-right">
+            <a href="/accounts/login/"><button class="custom-navbar-login">Login</button></a>
+            <div class="has-dropdown">
+                <span class="menu-label">마이 페이지</span>
+                <div class="menu-dot"></div>
+                <ul class="dropdown-menu">
+                    <li>테스트 / 검사 내역</li>
+                    <li>리포트 조회</li>
+                    <li>질문 내역</li>
+                    <li>1 : 1 문의 내역</li>
+                    <li>프로필</li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
