@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>정신건강 정보</span>
+            <span class="separator">></span>
+            <span>중독</span>
+        </div>
+        <h1 class="page-title">중독</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">정신건강 정보</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_info' %}">스트레스</a></li>
+                <li><a href="{% url 'pages:anxiety_info' %}">불안증</a></li>
+                <li><a href="{% url 'pages:depression_info' %}">우울증</a></li>
+                <li><a href="{% url 'pages:psychosis_info' %}">정신증</a></li>
+                <li><a href="{% url 'pages:burnout_info' %}">번아웃</a></li>
+                <li><a href="{% url 'pages:self_esteem_info' %}">자존감</a></li>
+                <li><a href="{% url 'pages:emotion_record_info' %}">감정 기복 / 조울증</a></li>
+                <li><a href="{% url 'pages:addiction_info' %}" class="active">중독</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_info' %}">수면 / 식욕</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>중독이란?</h2>
+                <p>
+                    중독은 특정 물질이나 행동에 대한 통제력을 잃고, 
+                    그로 인해 신체적, 정신적, 사회적으로 해를 입히면서도 
+                    계속해서 그 행동을 반복하는 상태를 의미합니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>중독의 유형</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">물질 중독</h3>
+                        <ul>
+                            <li>알코올 중독</li>
+                            <li>담배 중독</li>
+                            <li>약물 중독</li>
+                            <li>카페인 중독</li>
+                            <li>처방약 중독</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">행동 중독</h3>
+                        <ul>
+                            <li>도박 중독</li>
+                            <li>인터넷/스마트폰 중독</li>
+                            <li>게임 중독</li>
+                            <li>섹스 중독</li>
+                            <li>쇼핑 중독</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>중독의 증상</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">신체적 증상</h3>
+                        <ul>
+                            <li>금단 증상</li>
+                            <li>내성 증가</li>
+                            <li>건강 상태 악화</li>
+                            <li>수면 장애</li>
+                            <li>식욕 변화</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">정신적 증상</h3>
+                        <ul>
+                            <li>통제력 상실</li>
+                            <li>과도한 집착</li>
+                            <li>부정적 사고</li>
+                            <li>우울감, 불안감</li>
+                            <li>기억력 저하</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>중독의 원인</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">생물학적 요인</h3>
+                        <p>
+                            유전적 소인, 뇌의 보상 체계 변화, 
+                            신경전달물질 불균형 등이 영향을 줍니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">심리적 요인</h3>
+                        <p>
+                            스트레스, 우울증, 불안증, 
+                            자존감 저하 등이 중독을 유발할 수 있습니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">환경적 요인</h3>
+                        <p>
+                            가족력, 사회적 압박, 
+                            접근성 등이 중독에 영향을 줍니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>중독 치료 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">약물치료</h3>
+                        <p>
+                            금단 증상 완화, 갈망 감소, 
+                            재발 방지를 위한 약물을 사용합니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">심리치료</h3>
+                        <p>
+                            인지행동치료, 동기강화치료 등을 통해 
+                            중독 행동을 변화시킵니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">자조모임</h3>
+                        <p>
+                            AA, NA 등 자조모임에 참여하여 
+                            동료들의 지원을 받습니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">재활프로그램</h3>
+                        <p>
+                            입원치료, 외래치료 등을 통해 
+                            체계적인 치료를 받습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>도움이 필요하신가요?</h2>
+                <p style="margin-bottom: 30px;">
+                    중독 관리에 어려움을 겪고 계시다면 전문가의 도움을 받아보세요.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="{% url 'pages:addiction_management' %}" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">자가 관리 방법 보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

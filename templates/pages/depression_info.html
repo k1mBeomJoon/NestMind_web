@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>정신건강 정보</span>
+            <span class="separator">></span>
+            <span>우울증</span>
+        </div>
+        <h1 class="page-title">우울증</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">정신건강 정보</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_info' %}">스트레스</a></li>
+                <li><a href="{% url 'pages:anxiety_info' %}">불안증</a></li>
+                <li><a href="{% url 'pages:depression_info' %}" class="active">우울증</a></li>
+                <li><a href="{% url 'pages:psychosis_info' %}">정신증</a></li>
+                <li><a href="{% url 'pages:burnout_info' %}">번아웃</a></li>
+                <li><a href="{% url 'pages:self_esteem_info' %}">자존감</a></li>
+                <li><a href="{% url 'pages:emotion_record_info' %}">감정 기복 / 조울증</a></li>
+                <li><a href="{% url 'pages:addiction_info' %}">중독</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_info' %}">수면 / 식욕</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>우울증이란?</h2>
+                <p>
+                    우울증은 지속적인 우울감과 흥미 상실이 주요 증상인 정신건강 문제입니다. 
+                    단순한 우울감과는 달리, 우울증은 일상생활에 심각한 지장을 주며 
+                    전문적인 치료가 필요한 질환입니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>우울증의 주요 증상</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">정서적 증상</h3>
+                        <ul>
+                            <li>지속적인 우울감</li>
+                            <li>흥미나 즐거움 상실</li>
+                            <li>자신에 대한 부정적 생각</li>
+                            <li>죄책감, 무가치감</li>
+                            <li>자살 생각</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">신체적 증상</h3>
+                        <ul>
+                            <li>수면 장애 (과다수면 또는 불면)</li>
+                            <li>식욕 변화</li>
+                            <li>피로감, 에너지 부족</li>
+                            <li>집중력 저하</li>
+                            <li>신체 활동 감소</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>우울증의 원인</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">생물학적 요인</h3>
+                        <p>
+                            뇌의 화학물질 불균형, 유전적 요인, 
+                            호르몬 변화 등이 우울증에 영향을 줄 수 있습니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">심리적 요인</h3>
+                        <p>
+                            스트레스, 상실 경험, 부정적인 사고 패턴 등이 
+                            우울증을 유발하거나 악화시킬 수 있습니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">환경적 요인</h3>
+                        <p>
+                            경제적 어려움, 인간관계 문제, 
+                            사회적 고립 등이 우울증의 원인이 될 수 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>우울증 치료 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">심리치료</h3>
+                        <p>
+                            인지행동치료, 대화치료 등을 통해 
+                            부정적인 사고 패턴을 개선할 수 있습니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">약물치료</h3>
+                        <p>
+                            항우울제를 통해 뇌의 화학물질 균형을 
+                            회복시킬 수 있습니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">생활습관 개선</h3>
+                        <p>
+                            규칙적인 운동, 충분한 수면, 
+                            균형 잡힌 식사가 도움이 됩니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">사회적 지원</h3>
+                        <p>
+                            가족, 친구, 전문가의 지원을 받아 
+                            회복 과정을 돕습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>도움이 필요하신가요?</h2>
+                <p style="margin-bottom: 30px;">
+                    우울증 관리에 어려움을 겪고 계시다면 전문가의 도움을 받아보세요.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="{% url 'pages:depression_management' %}" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">자가 관리 방법 보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

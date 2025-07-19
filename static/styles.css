@@ -1,38 +1,8 @@
-.mainpage-center-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 70vh;
-    position: relative;
-    z-index: 1;
-    user-select: none;
-    outline: none;
-}
-
-.mainpage-title {
-    font-size: 4rem;
-    font-weight: bold;
-    color: #2176ff;
-    letter-spacing: 0.1em;
-    margin: 0.5rem 0;
-    text-align: center;
-    line-height: 1;
-}
-
-.mainpage-image {
-    width: 850px;
-    height: 550px;
-    object-fit: cover;
-    border-radius: 0;
-    margin: 1.5rem 0;
-    box-shadow: none;
-    border: none;
-}
-
+/* Global Styles */
 body, * {
     user-select: none !important;
 }
+
 img {
     user-drag: none;
     -webkit-user-drag: none;
@@ -43,25 +13,34 @@ img {
 }
 
 body {
-    background: #fff;
-    min-height: 0;
-    padding-top: 80px;
-    padding-bottom: 0;
+    font-family: 'Pretendard', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+body > *:not(.custom-navbar):not(.custom-footer-v2) {
+    flex: 1;
+}
+
+/* Navigation Bar */
 .custom-navbar {
     width: 100%;
     background: #e6f0fa;
     border: 1.5px solid #2c5ca9;
     border-radius: 4px;
     box-sizing: border-box;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     padding: 0;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
 }
+
 .custom-navbar-container {
     display: flex;
     align-items: center;
@@ -69,11 +48,13 @@ body {
     height: 70px;
     padding: 0 32px;
 }
+
 .custom-navbar-left {
     display: flex;
     align-items: center;
     gap: 128px;
 }
+
 .custom-navbar-brand {
     color: #2176ff;
     font-size: 1.25rem;
@@ -84,6 +65,7 @@ body {
     padding: 0;
     text-decoration: none;
 }
+
 .custom-navbar-menu {
     display: flex;
     align-items: center;
@@ -94,6 +76,7 @@ body {
     padding: 0;
     position: relative;
 }
+
 .custom-navbar-menu li {
     font-size: 1.05rem;
     font-weight: 600;
@@ -106,11 +89,13 @@ body {
     position: relative;
     cursor: pointer;
 }
+
 .has-dropdown {
     position: relative;
     padding-top: 8px;
     padding-bottom: 8px;
 }
+
 .menu-label {
     font-size: 1.05rem;
     font-weight: 600;
@@ -123,9 +108,11 @@ body {
     cursor: pointer;
     transition: color 0.25s cubic-bezier(.4,0,.2,1);
 }
+
 .menu-label:hover {
     color: #2176ff;
 }
+
 .menu-dot {
     display: none;
     position: absolute;
@@ -141,11 +128,13 @@ body {
     opacity: 0;
     transition: opacity 0.25s cubic-bezier(.4,0,.2,1), top 0.25s cubic-bezier(.4,0,.2,1);
 }
+
 .has-dropdown:hover .menu-dot {
     display: block;
     opacity: 1;
     top: -14px;
 }
+
 .dropdown-menu {
     display: none;
     flex-direction: column;
@@ -165,11 +154,13 @@ body {
     pointer-events: none;
     transition: opacity 0.25s cubic-bezier(.4,0,.2,1);
 }
+
 .has-dropdown:hover .dropdown-menu {
     display: flex;
     opacity: 1;
     pointer-events: auto;
 }
+
 .dropdown-menu li {
     font-size: 1.08rem;
     font-weight: 500;
@@ -184,81 +175,136 @@ body {
     cursor: pointer;
     transition: color 0.25s cubic-bezier(.4,0,.2,1), background 0.25s cubic-bezier(.4,0,.2,1);
 }
+
 .dropdown-menu li.red {
     color: #222;
     font-weight: 700;
 }
+
 .dropdown-menu li:hover {
     color: #2176ff;
 }
+
+.dropdown-menu li a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: inherit;
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
 .custom-navbar-menu li b {
     font-weight: 900;
     letter-spacing: 0.5px;
 }
+
 .custom-navbar-right {
     display: flex;
     align-items: center;
     gap: 18px;
     margin-right: 72px;
 }
+
 .custom-navbar-login {
-    border: 1.5px solid #2c5ca9;
-    background: #fff;
-    color: #222;
-    font-weight: 700;
-    font-size: 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
     border-radius: 4px;
-    padding: 4px 22px;
+    font-size: 14px;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    font-family: 'Pretendard', 'Segoe UI', sans-serif;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
 }
+
 .custom-navbar-login:hover {
-    background: #eaf2ff;
-    color: #2176ff;
+    background: #0056b3;
+    color: white;
+    text-decoration: none;
 }
+
+.custom-navbar-user {
+    color: #007bff;
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.custom-navbar-logout {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+.custom-navbar-logout:hover {
+    background: #f1b0b7;
+    color: #721c24;
+}
+
 .custom-navbar-mypage {
     font-size: 1rem;
     font-weight: 700;
     color: #222;
     font-family: 'Pretendard', 'Segoe UI', sans-serif;
 }
+
 .custom-navbar-right .has-dropdown .menu-label {
     margin-top: 0;
     padding: 0;
     display: inline-block;
 }
+
 .custom-navbar-right .has-dropdown .menu-dot {
     left: 50%;
     transform: translateX(-50%);
     top: -10px;
     vertical-align: middle;
 }
+
 .custom-navbar-login.menu-label {
     padding: 0;
     border: none;
     background: none;
 }
 
+/* Footer */
 .custom-footer-v2 {
+    margin-top: auto;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
     width: 100%;
-    background: #fff;
-    border: none;
-    margin: 0;
-    padding: 0;
+}
+
+.custom-footer-v2::before {
+    content: "당신의 감정이 조용히 머무르는 곳, NestMind";
+    display: block;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    margin-bottom: 20px;
+    width: 100%;
     box-sizing: border-box;
-    /* position: fixed; */
-    /* left: 0; */
-    /* bottom: 0; */
-    z-index: 1000;
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity 0.4s cubic-bezier(.4,0,.2,1);
 }
-.footer-hidden {
-    opacity: 0;
-    pointer-events: none;
-}
+
 .footer-bar {
     width: 100%;
     background: #727480;
@@ -272,20 +318,24 @@ body {
     padding-left: 32px;
     gap: 12px;
 }
+
 .footer-bar a {
     color: #fff;
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
 }
+
 .footer-bar a:hover {
     text-decoration: underline;
 }
+
 .footer-bar-divider {
     color: #d1d1d6;
     margin: 0 10px;
     font-size: 1.1rem;
 }
+
 .footer-info {
     background: #fff;
     color: #666;
@@ -298,45 +348,80 @@ body {
     line-height: 1.7;
     font-family: 'Pretendard', 'Segoe UI', sans-serif;
 }
+
 .footer-info div {
     margin: 0;
 }
+
 .footer-info div:last-child {
     margin-bottom: 0;
 }
 
-.login-choice-container {
+/* Main Page */
+.mainpage-center-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 70vh;
-}
-.login-choice-btns {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-top: 16px;
-}
-.login-choice-btn {
-    display: block;
-    width: 220px;
-    padding: 14px 0;
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: #2176ff;
-    background: #fff;
-    border: 2px solid #2176ff;
-    border-radius: 8px;
+    min-height: calc(100vh - 160px);
+    width: 100%;
     text-align: center;
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-}
-.login-choice-btn:hover {
-    background: #e6f0fa;
-    color: #174a8b;
 }
 
+.mainpage-title {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #2176ff;
+    letter-spacing: 0.1em;
+    margin: 0.5rem 0;
+    text-align: center;
+    line-height: 1;
+}
+
+.mainpage-image {
+    width: 850px;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 0;
+    margin: 1.5rem auto;
+    box-shadow: none;
+    border: none;
+    display: block;
+    max-width: 100%;
+}
+
+.mainpage-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.mainpage-btn {
+    background: #fff;
+    color: #007bff;
+    padding: 12px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+    border: 2px solid #007bff;
+}
+
+.mainpage-btn:hover {
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+}
+
+/* Quick Menu Section */
 .mainpage-quickmenu-section {
     width: 100%;
     display: flex;
@@ -346,10 +431,12 @@ body {
     min-height: 320px;
     margin-bottom: 120px;
 }
+
 .mainpage-quickmenu-list {
     display: flex;
     gap: 40px;
 }
+
 .mainpage-quickmenu-item {
     background: #fff;
     border: 2px solid #e6f0fa;
@@ -364,11 +451,13 @@ body {
     transition: box-shadow 0.2s, border 0.2s, transform 0.2s;
     cursor: pointer;
 }
+
 .mainpage-quickmenu-item:hover {
     box-shadow: 0 8px 32px rgba(33,118,255,0.18);
     border: 2px solid #2176ff;
     transform: translateY(-6px) scale(1.04);
 }
+
 .mainpage-quickmenu-item img {
     display: block;
     width: 80px;
@@ -379,6 +468,7 @@ body {
     margin-bottom: 18px;
     margin-top: 0;
 }
+
 .mainpage-quickmenu-label {
     font-size: 1.08rem;
     font-weight: 600;
@@ -387,9 +477,680 @@ body {
     margin-top: 4px;
     font-family: 'Pretendard', 'Segoe UI', sans-serif;
 }
+
 .mainpage-quickmenu-item:nth-child(2) img,
 .mainpage-quickmenu-item:nth-child(4) img {
     width: 80px;
     height: 80px;
     max-height: 80px;
+}
+
+/* Login Pages */
+.login-choice-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px);
+    padding: 20px;
+    width: 100%;
+}
+
+.login-choice-content {
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-choice-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.login-choice-btn {
+    background: #007bff;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.login-choice-btn:hover {
+    background: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px);
+    padding: 20px;
+    width: 100%;
+}
+
+.login-form-content {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Register Page */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px);
+    padding: 40px 20px;
+    width: 100%;
+}
+
+.register-content {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-logo {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.logo-graphic {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.faces-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.face {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+}
+
+.face-blonde {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+}
+
+.face-dark {
+    background: linear-gradient(45deg, #8b4513, #654321);
+}
+
+.logo-text {
+    margin-bottom: 15px;
+}
+
+.mind-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.nest-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+}
+
+.logo-lines {
+    position: relative;
+    height: 2px;
+    margin: 10px 0;
+}
+
+.line {
+    position: absolute;
+    height: 2px;
+    background: #007bff;
+    width: 60px;
+    top: 0;
+}
+
+.line-left {
+    left: -70px;
+}
+
+.line-right {
+    right: -70px;
+}
+
+.register-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.register-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.register-form {
+    text-align: left;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.input-with-button {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.input-with-button input {
+    flex: 1;
+}
+
+/* Universal Button Style - 모든 버튼의 기본 스타일 */
+.universal-btn {
+    background: #007bff;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.universal-btn:hover {
+    background: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+
+/* Login Choice Button (기존 스타일 유지) */
+.login-choice-btn {
+    background: #007bff;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.login-choice-btn:hover {
+    background: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+
+/* Login Form Button */
+.login-btn {
+    background: #007bff !important;
+    color: white !important;
+    padding: 12px 30px !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    transition: background-color 0.3s !important;
+    display: inline-block !important;
+    width: 220px !important;
+    text-align: center !important;
+    margin: 20px auto 0 auto !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+}
+
+.login-btn:hover {
+    background: #0056b3 !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+/* Register Button */
+.register-btn {
+    background: #007bff !important;
+    color: white !important;
+    padding: 12px 30px !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    transition: background-color 0.3s !important;
+    display: inline-block !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin: 20px auto 0 auto !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+}
+
+.register-btn:hover {
+    background: #0056b3 !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+/* Duplicate Check Button */
+.duplicate-check-btn {
+    background: #f8f9fa !important;
+    color: #6c757d !important;
+    border: 1px solid #dee2e6 !important;
+    padding: 12px 16px !important;
+    border-radius: 4px !important;
+    font-size: 12px !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    transition: all 0.3s !important;
+    font-weight: bold !important;
+}
+
+.duplicate-check-btn:hover {
+    background: #e9ecef !important;
+    color: #495057 !important;
+    text-decoration: none !important;
+}
+
+/* 중복검사 통과 상태 */
+.duplicate-check-btn.success {
+    background: #d4edda !important;
+    color: #155724 !important;
+    border: 1px solid #c3e6cb !important;
+}
+
+.duplicate-check-btn.success:hover {
+    background: #c3e6cb !important;
+    color: #155724 !important;
+}
+
+/* 중복검사 실패 상태 */
+.duplicate-check-btn.error {
+    background: #f8d7da !important;
+    color: #721c24 !important;
+    border: 1px solid #f5c6cb !important;
+}
+
+.duplicate-check-btn.error:hover {
+    background: #f5c6cb !important;
+    color: #721c24 !important;
+}
+
+/* Main Page Button */
+.mainpage-btn {
+    background: #007bff;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.mainpage-btn:hover {
+    background: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+
+/* Password Input Container */
+.password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+    z-index: 10;
+}
+
+.password-toggle-icon:hover {
+    opacity: 0.7;
+}
+
+/* Password Confirmation Check */
+.password-check-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-check-container .password-input-container {
+    flex: 1;
+    width: 100%;
+}
+
+.password-check-container .password-input-container input {
+    width: 100%;
+    padding-right: 60px; /* 토글 아이콘과 체크 아이콘을 위한 공간 */
+}
+
+.password-check-icon {
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.password-check-icon.match {
+    opacity: 1;
+    color: #28a745;
+}
+
+.password-check-icon.mismatch {
+    opacity: 1;
+    color: #dc3545;
+}
+
+/* Password Requirements */
+.password-requirements {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.password-requirement {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.password-requirement.valid {
+    color: #28a745;
+}
+
+.password-requirement.invalid {
+    color: #dc3545;
+}
+
+.requirement-icon {
+    margin-right: 5px;
+    font-size: 10px;
+}
+
+/* Password Strength Indicator */
+.password-strength {
+    margin-top: 5px;
+    height: 4px;
+    background: #e9ecef;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    transition: all 0.3s;
+    border-radius: 2px;
+}
+
+.password-strength-bar.weak {
+    background: #dc3545;
+    width: 33%;
+}
+
+.password-strength-bar.medium {
+    background: #ffc107;
+    width: 66%;
+}
+
+.password-strength-bar.strong {
+    background: #28a745;
+    width: 100%;
+}
+
+/* 상세 페이지 공통 레이아웃 */
+.detail-page-container {
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+.detail-page-header {
+    background: url('../static/layout_background_blue.png') no-repeat center center;
+    background-size: cover;
+    padding: 20px 20px;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.breadcrumb {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+.breadcrumb a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+    color: #0056b3;
+}
+
+.breadcrumb .separator {
+    margin: 0 8px;
+    color: #999;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    text-align: center;
+}
+
+.detail-page-content {
+    display: flex;
+    max-width: 2000px;
+    margin: 0;
+    padding: 40px 0 40px 20px;
+    gap: 24px;
+    position: relative;
+}
+
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 30px;
+    height: fit-content;
+    position: sticky;
+    top: 120px;
+    margin-left: 0;
+    z-index: 100;
+}
+
+.sidebar-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e3f2fd;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 8px;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 12px 16px;
+    color: #555;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+
+.sidebar-menu a:hover {
+    background: #e3f2fd;
+    color: #007bff;
+    transform: translateX(5px);
+}
+
+.sidebar-menu a.active {
+    background: #007bff;
+    color: white;
+}
+
+.main-content {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 24px;
+}
+
+.content-section {
+    margin-bottom: 40px;
+}
+
+.content-section:last-child {
+    margin-bottom: 0;
+}
+
+.content-section h2 {
+    color: #007bff;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e3f2fd;
+}
+
+.content-section h3 {
+    color: #333;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.content-section p {
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.content-section ul {
+    line-height: 1.8;
+    color: #555;
+    padding-left: 20px;
+}
+
+.content-section li {
+    margin-bottom: 8px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .detail-page-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .sidebar {
+        width: 100%;
+        position: static;
+        margin-left: 0;
+        top: auto;
+        left: auto;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
 }

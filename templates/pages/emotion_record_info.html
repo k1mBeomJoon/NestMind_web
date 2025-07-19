@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>정신건강 정보</span>
+            <span class="separator">></span>
+            <span>감정 기복 / 조울증</span>
+        </div>
+        <h1 class="page-title">감정 기복 / 조울증</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">정신건강 정보</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_info' %}">스트레스</a></li>
+                <li><a href="{% url 'pages:anxiety_info' %}">불안증</a></li>
+                <li><a href="{% url 'pages:depression_info' %}">우울증</a></li>
+                <li><a href="{% url 'pages:psychosis_info' %}">정신증</a></li>
+                <li><a href="{% url 'pages:burnout_info' %}">번아웃</a></li>
+                <li><a href="{% url 'pages:self_esteem_info' %}">자존감</a></li>
+                <li><a href="{% url 'pages:emotion_record_info' %}" class="active">감정 기복 / 조울증</a></li>
+                <li><a href="{% url 'pages:addiction_info' %}">중독</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_info' %}">수면 / 식욕</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>감정 기복이란?</h2>
+                <p>
+                    감정 기복은 기분이 짧은 기간 내에 크게 오르내리는 현상을 말합니다. 누구나 일상에서 감정의 변화는 겪지만, 감정 기복이 심할 경우 일상생활, 대인관계, 자기조절에 어려움을 겪을 수 있습니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>감정 기복과 조울증(양극성 장애)의 차이</h2>
+                <p>
+                    감정 기복은 스트레스, 환경 변화, 성격적 요인 등 다양한 원인으로 발생할 수 있습니다. 반면, 조울증(양극성 장애)은 조증(기분이 비정상적으로 들뜨는 상태)과 우울증(기분이 비정상적으로 가라앉는 상태)이 반복적으로 나타나는 정신질환입니다. 감정 기복이 심하고, 일상 기능에 큰 영향을 미친다면 조울증을 의심해볼 수 있습니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>조울증(양극성 장애)의 주요 증상</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">조증(Mania) 증상</h3>
+                        <ul>
+                            <li>기분이 비정상적으로 고양됨, 들뜸</li>
+                            <li>수면 욕구 감소</li>
+                            <li>과도한 자신감, 과대망상</li>
+                            <li>말이 많아지고, 생각이 빠르게 전환됨</li>
+                            <li>충동적이고 위험한 행동(과소비, 무분별한 대인관계 등)</li>
+                            <li>주의 산만, 집중력 저하</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">우울증(Depression) 증상</h3>
+                        <ul>
+                            <li>지속적인 우울감, 무기력감</li>
+                            <li>흥미와 의욕 상실</li>
+                            <li>수면 장애(불면 또는 과다수면)</li>
+                            <li>식욕 변화(감소 또는 증가)</li>
+                            <li>집중력 저하, 결정력 감소</li>
+                            <li>자살 생각 또는 시도</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>감정 기복/조울증의 원인</h2>
+                <ul>
+                    <li>유전적 요인(가족력)</li>
+                    <li>뇌 신경전달물질의 불균형</li>
+                    <li>심한 스트레스, 외상 경험</li>
+                    <li>수면 부족, 불규칙한 생활</li>
+                    <li>약물, 알코올 남용</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>관리 및 치료 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">전문가 상담 및 진단</h3>
+                        <ul>
+                            <li>정신건강의학과 전문의 상담</li>
+                            <li>필요시 심리검사, 진단 평가</li>
+                        </ul>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">약물치료</h3>
+                        <ul>
+                            <li>기분 안정제, 항우울제, 항정신병 약물 등</li>
+                            <li>의사의 처방과 지시에 따라 복용</li>
+                        </ul>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">심리치료</h3>
+                        <ul>
+                            <li>인지행동치료(CBT)</li>
+                            <li>가족치료, 대인관계치료 등</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">생활습관 관리</h3>
+                        <ul>
+                            <li>규칙적인 수면과 식사</li>
+                            <li>스트레스 관리, 휴식</li>
+                            <li>운동, 취미활동</li>
+                            <li>알코올, 약물 남용 피하기</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>일상생활에서의 팁</h2>
+                <ul>
+                    <li>감정 변화가 심할 때는 가까운 사람에게 알리기</li>
+                    <li>감정 일기, 기분 체크리스트 등으로 자신의 상태를 점검</li>
+                    <li>무리한 결정을 내리지 않기</li>
+                    <li>도움이 필요할 때는 주저하지 말고 전문가에게 상담 요청</li>
+                </ul>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>도움이 필요하신가요?</h2>
+                <p style="margin-bottom: 30px;">
+                    감정 기복이나 조울증으로 인해 어려움을 겪고 계시다면 가까운 병원이나 정신건강의학과 전문의와 상담해보세요.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="{% url 'pages:emotion_record_management' %}" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">자가 관리 방법 보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

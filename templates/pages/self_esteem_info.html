@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>정신건강 정보</span>
+            <span class="separator">></span>
+            <span>자존감</span>
+        </div>
+        <h1 class="page-title">자존감</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">정신건강 정보</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_info' %}">스트레스</a></li>
+                <li><a href="{% url 'pages:anxiety_info' %}">불안증</a></li>
+                <li><a href="{% url 'pages:depression_info' %}">우울증</a></li>
+                <li><a href="{% url 'pages:psychosis_info' %}">정신증</a></li>
+                <li><a href="{% url 'pages:burnout_info' %}">번아웃</a></li>
+                <li><a href="{% url 'pages:self_esteem_info' %}" class="active">자존감</a></li>
+                <li><a href="{% url 'pages:emotion_record_info' %}">감정 기복 / 조울증</a></li>
+                <li><a href="{% url 'pages:addiction_info' %}">중독</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_info' %}">수면 / 식욕</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>자존감이란?</h2>
+                <p>
+                    자존감은 자신에 대한 전반적인 평가와 가치감을 의미합니다. 
+                    건강한 자존감은 자신의 장단점을 객관적으로 인식하고, 
+                    자신을 사랑하고 존중하는 마음가짐을 포함합니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>자존감의 유형</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">건강한 자존감</h3>
+                        <ul>
+                            <li>자신의 장단점을 객관적으로 인식</li>
+                            <li>실패를 학습 기회로 여김</li>
+                            <li>자신의 감정과 욕구를 적절히 표현</li>
+                            <li>타인과의 건강한 경계 설정</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">낮은 자존감</h3>
+                        <ul>
+                            <li>자신에 대한 부정적 평가</li>
+                            <li>실패에 대한 과도한 두려움</li>
+                            <li>타인의 인정에 의존</li>
+                            <li>자신의 욕구를 억압</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>낮은 자존감의 원인</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">어린 시 경험</h3>
+                        <p>
+                            부모의 비판적 태도, 학대, 
+                            무시 등의 경험이 자존감에 영향을 줍니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">사회적 압박</h3>
+                        <p>
+                            완벽주의, 경쟁, 
+                            외모 압박 등이 자존감을 저하시킬 수 있습니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">부정적 사고 패턴</h3>
+                        <p>
+                            자신을 비판하는 내면의 목소리, 
+                            부정적 자기 대화가 자존감을 해칩니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>자존감 향상 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">자기 인정</h3>
+                        <p>
+                            자신의 장단점을 객관적으로 인식하고 
+                            불완전함을 받아들이는 연습을 합니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">긍정적 자기 대화</h3>
+                        <p>
+                            자신을 비판하는 내면의 목소리를 
+                            따뜻하고 격려하는 목소리로 바꿉니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">목표 설정</h3>
+                        <p>
+                            작고 달성 가능한 목표를 설정하여 
+                            성취감을 통해 자신감을 키웁니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">자기 돌봄</h3>
+                        <p>
+                            자신을 사랑하고 돌보는 활동을 통해 
+                            자신의 가치를 인식합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>도움이 필요하신가요?</h2>
+                <p style="margin-bottom: 30px;">
+                    자존감 관리에 어려움을 겪고 계시다면 전문가의 도움을 받아보세요.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="{% url 'pages:self_esteem_management' %}" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">자가 관리 방법 보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

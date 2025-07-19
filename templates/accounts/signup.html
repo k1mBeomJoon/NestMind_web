@@ -1,9 +1,292 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
-  </form>
+<div class="register-container" align="center" style="text-align: center;">
+    <div class="register-content" align="center" style="text-align: center;">
+        <img src="{% static 'mainpage_design.png' %}" alt="main visual" class="mainpage-image" style="margin-bottom: 32px; display: block; margin-left: auto; margin-right: auto; width: 595px; height: 385px;" />
+        
+        <!-- Page Title -->
+        <h1 class="register-title">Register</h1>
+        
+        <!-- Registration Form -->
+        <div class="register-form-container" align="center" style="text-align: center;">
+            <form method="post" class="register-form" align="center" style="text-align: center;" id="signup-form">
+                {% csrf_token %}
+                
+                <!-- ID Field -->
+                <div class="form-group">
+                    <label for="id_field">ID :</label>
+                    <div class="input-with-button">
+                        <input type="text" id="id_field" name="username" placeholder="ID" required>
+                        <button type="button" class="duplicate-check-btn" onclick="checkDuplicate('username', 'id_field')">중복검사</button>
+                    </div>
+                </div>
+                
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email_field">Email :</label>
+                    <input type="email" id="email_field" name="email" placeholder="Email" required>
+                </div>
+                
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password_field">PW :</label>
+                    <div class="password-input-container">
+                        <input type="password" id="password_field" name="password1" placeholder="PW" required oninput="checkPasswordStrength()">
+                        <span class="password-toggle-icon" onclick="togglePassword('password_field')">👁️</span>
+                    </div>
+                    <div class="password-requirements">
+                        <div class="password-requirement" id="length-check">
+                            <span class="requirement-icon">○</span>
+                            8글자 이상
+                        </div>
+                        <div class="password-requirement" id="char-check">
+                            <span class="requirement-icon">○</span>
+                            영문/한글과 숫자 혼합
+                        </div>
+                        <div class="password-requirement" id="similarity-check">
+                            <span class="requirement-icon">○</span>
+                            ID와 유사하지 않음
+                        </div>
+                    </div>
+                    <div class="password-strength">
+                        <div class="password-strength-bar" id="strength-bar"></div>
+                    </div>
+                </div>
+                
+                <!-- Password Confirmation Field -->
+                <div class="form-group">
+                    <label for="password_confirm_field">PW확인 :</label>
+                    <div class="password-check-container">
+                        <div class="password-input-container">
+                            <input type="password" id="password_confirm_field" name="password2" placeholder="PW확인" required oninput="checkPasswordMatch()">
+                            <span class="password-toggle-icon" onclick="togglePassword('password_confirm_field')">👁️</span>
+                        </div>
+                        <span class="password-check-icon" id="password-check-icon">✓</span>
+                    </div>
+                </div>
+                
+                <!-- Nickname Field -->
+                <div class="form-group">
+                    <label for="nickname_field">닉네임 :</label>
+                    <div class="input-with-button">
+                        <input type="text" id="nickname_field" name="nickname" placeholder="닉네임" required>
+                        <button type="button" class="duplicate-check-btn" onclick="checkDuplicate('nickname', 'nickname_field')">중복검사</button>
+                    </div>
+                </div>
+                
+                <!-- Register Button -->
+                <button type="button" class="register-btn" onclick="validateAndSubmit()">회원가입</button>
+            </form>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <p>이미 계정이 있으신가요? <a href="{% url 'accounts:login' %}" style="color: #007bff; text-decoration: none;">로그인</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 중복검사 상태를 저장할 변수
+let duplicateCheckStatus = {
+    username: false,
+    nickname: false
+};
+
+async function checkDuplicate(type, inputId) {
+    const input = document.getElementById(inputId);
+    const button = input.parentNode.querySelector('.duplicate-check-btn');
+    const value = input.value.trim();
+    
+    if (!value) {
+        alert('값을 입력해주세요.');
+        return;
+    }
+    
+    // 버튼 비활성화 및 로딩 상태
+    button.disabled = true;
+    button.textContent = '검사중...';
+    
+    try {
+        const response = await fetch('{% url "accounts:check_duplicate" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                type: type,
+                value: value
+            })
+        });
+        
+        const data = await response.json();
+        
+        // 버튼 상태 초기화
+        button.disabled = false;
+        button.textContent = '중복검사';
+        
+        // 기존 클래스 제거
+        button.classList.remove('success', 'error');
+        
+        if (data.success) {
+            // 성공 - 연두색
+            button.classList.add('success');
+            duplicateCheckStatus[type] = true;
+            alert(data.message);
+        } else {
+            // 실패 - 붉은색
+            button.classList.add('error');
+            duplicateCheckStatus[type] = false;
+            alert(data.message);
+        }
+        
+    } catch (error) {
+        console.error('Error:', error);
+        button.disabled = false;
+        button.textContent = '중복검사';
+        alert('검사 중 오류가 발생했습니다.');
+    }
+}
+
+function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    const icon = input.parentNode.querySelector('.password-toggle-icon');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = '🙈';
+    } else {
+        input.type = 'password';
+        icon.textContent = '👁️';
+    }
+}
+
+function checkPasswordStrength() {
+    const password = document.getElementById('password_field').value;
+    const username = document.getElementById('id_field').value;
+    const lengthCheck = document.getElementById('length-check');
+    const charCheck = document.getElementById('char-check');
+    const similarityCheck = document.getElementById('similarity-check');
+    const strengthBar = document.getElementById('strength-bar');
+    
+    // 길이 체크 (8글자 이상)
+    const isLengthValid = password.length >= 8;
+    lengthCheck.className = `password-requirement ${isLengthValid ? 'valid' : 'invalid'}`;
+    lengthCheck.querySelector('.requirement-icon').textContent = isLengthValid ? '✓' : '○';
+    
+    // 문자 혼합 체크 (영문/한글과 숫자)
+    const hasLetter = /[a-zA-Z가-힣]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const isCharValid = hasLetter && hasNumber;
+    charCheck.className = `password-requirement ${isCharValid ? 'valid' : 'invalid'}`;
+    charCheck.querySelector('.requirement-icon').textContent = isCharValid ? '✓' : '○';
+    
+    // ID와 유사성 체크
+    const isSimilarToUsername = password.toLowerCase().includes(username.toLowerCase()) || username.toLowerCase().includes(password.toLowerCase());
+    similarityCheck.className = `password-requirement ${!isSimilarToUsername ? 'valid' : 'invalid'}`;
+    similarityCheck.querySelector('.requirement-icon').textContent = !isSimilarToUsername ? '✓' : '○';
+    
+    // 강도 표시
+    let strength = 0;
+    if (isLengthValid) strength += 1;
+    if (isCharValid) strength += 1;
+    if (!isSimilarToUsername) strength += 1;
+    
+    strengthBar.className = 'password-strength-bar';
+    if (strength === 1) {
+        strengthBar.classList.add('weak');
+    } else if (strength === 2) {
+        strengthBar.classList.add('medium');
+    } else if (strength === 3) {
+        strengthBar.classList.add('strong');
+    }
+    
+    // 패스워드 확인도 다시 체크
+    checkPasswordMatch();
+}
+
+function checkPasswordMatch() {
+    const password = document.getElementById('password_field').value;
+    const confirmPassword = document.getElementById('password_confirm_field').value;
+    const checkIcon = document.getElementById('password-check-icon');
+    
+    if (confirmPassword === '') {
+        checkIcon.className = 'password-check-icon';
+        return;
+    }
+    
+    if (password === confirmPassword) {
+        checkIcon.className = 'password-check-icon match';
+    } else {
+        checkIcon.className = 'password-check-icon mismatch';
+    }
+}
+
+function validateAndSubmit() {
+    // 모든 필드 값 가져오기
+    const username = document.getElementById('id_field').value.trim();
+    const email = document.getElementById('email_field').value.trim();
+    const password = document.getElementById('password_field').value;
+    const confirmPassword = document.getElementById('password_confirm_field').value;
+    const nickname = document.getElementById('nickname_field').value.trim();
+    
+    // 1. 필수 필드 검증
+    if (!username || !email || !password || !confirmPassword || !nickname) {
+        alert('모든 필드를 입력해주세요.');
+        return;
+    }
+    
+    // 2. 이메일 형식 검증
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('올바른 이메일 형식을 입력해주세요.');
+        return;
+    }
+    
+    // 3. 중복검사 검증
+    if (!duplicateCheckStatus.username) {
+        alert('ID 중복검사를 완료해주세요.');
+        return;
+    }
+    
+    if (!duplicateCheckStatus.nickname) {
+        alert('닉네임 중복검사를 완료해주세요.');
+        return;
+    }
+    
+    // 4. 패스워드 조건 검증
+    const isLengthValid = password.length >= 8;
+    const hasLetter = /[a-zA-Z가-힣]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const isCharValid = hasLetter && hasNumber;
+    const isSimilarToUsername = password.toLowerCase().includes(username.toLowerCase()) || username.toLowerCase().includes(password.toLowerCase());
+    
+    if (!isLengthValid) {
+        alert('패스워드는 8글자 이상이어야 합니다.');
+        return;
+    }
+    
+    if (!isCharValid) {
+        alert('패스워드는 영문/한글과 숫자를 혼합해야 합니다.');
+        return;
+    }
+    
+    if (isSimilarToUsername) {
+        alert('패스워드는 ID와 유사하지 않아야 합니다.');
+        return;
+    }
+    
+    // 5. 패스워드 확인 검증
+    if (password !== confirmPassword) {
+        alert('패스워드가 일치하지 않습니다.');
+        return;
+    }
+    
+    // 모든 조건을 만족하면 축하 팝업 표시
+    if (confirm('회원가입을 축하합니다! 🎉\n\n회원가입이 완료되었습니다.')) {
+        // 폼 제출
+        document.getElementById('signup-form').submit();
+    }
+}
+</script>
 {% endblock %}

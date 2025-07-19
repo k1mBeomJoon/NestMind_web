@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>정신건강 정보</span>
+            <span class="separator">></span>
+            <span>스트레스</span>
+        </div>
+        <h1 class="page-title">스트레스</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">정신건강 정보</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_info' %}" class="active">스트레스</a></li>
+                <li><a href="{% url 'pages:anxiety_info' %}">불안증</a></li>
+                <li><a href="{% url 'pages:depression_info' %}">우울증</a></li>
+                <li><a href="{% url 'pages:psychosis_info' %}">정신증</a></li>
+                <li><a href="{% url 'pages:burnout_info' %}">번아웃</a></li>
+                <li><a href="{% url 'pages:self_esteem_info' %}">자존감</a></li>
+                <li><a href="{% url 'pages:emotion_record_info' %}">감정 기록 / 조울증</a></li>
+                <li><a href="{% url 'pages:addiction_info' %}">중독</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_info' %}">수면 / 식욕</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>스트레스란?</h2>
+                <p>
+                    스트레스는 우리가 일상생활에서 경험하는 다양한 압박감과 긴장 상태를 의미합니다. 
+                    적절한 수준의 스트레스는 우리를 동기부여하고 성장시킬 수 있지만, 
+                    과도한 스트레스는 신체적, 정신적 건강에 부정적인 영향을 미칠 수 있습니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>스트레스의 증상</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">신체적 증상</h3>
+                        <ul>
+                            <li>두통, 어깨 통증</li>
+                            <li>소화불량, 식욕 변화</li>
+                            <li>수면 장애</li>
+                            <li>피로감, 에너지 부족</li>
+                            <li>심박수 증가</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">정신적 증상</h3>
+                        <ul>
+                            <li>집중력 저하</li>
+                            <li>기억력 감소</li>
+                            <li>불안감, 우울감</li>
+                            <li>짜증, 성격 변화</li>
+                            <li>의사결정 어려움</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>스트레스 관리 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">운동</h3>
+                        <p>
+                            규칙적인 운동은 스트레스 호르몬을 감소시키고 
+                            엔도르핀을 분비시켜 기분을 개선합니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">명상</h3>
+                        <p>
+                            깊은 호흡과 명상을 통해 마음을 진정시키고 
+                            스트레스에 대한 반응을 조절할 수 있습니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">취미 활동</h3>
+                        <p>
+                            좋아하는 활동에 몰입하면 스트레스를 잊고 
+                            긍정적인 에너지를 얻을 수 있습니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">충분한 휴식</h3>
+                        <p>
+                            적절한 수면과 휴식을 통해 몸과 마음을 
+                            회복시키고 스트레스에 대응할 수 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>도움이 필요하신가요?</h2>
+                <p style="margin-bottom: 30px;">
+                    스트레스 관리에 어려움을 겪고 계시다면 전문가의 도움을 받아보세요.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="{% url 'pages:stress_management' %}" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">자가 관리 방법 보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

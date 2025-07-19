@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>정신건강 정보</span>
+            <span class="separator">></span>
+            <span>불안증</span>
+        </div>
+        <h1 class="page-title">불안증</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">정신건강 정보</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_info' %}">스트레스</a></li>
+                <li><a href="{% url 'pages:anxiety_info' %}" class="active">불안증</a></li>
+                <li><a href="{% url 'pages:depression_info' %}">우울증</a></li>
+                <li><a href="{% url 'pages:psychosis_info' %}">정신증</a></li>
+                <li><a href="{% url 'pages:burnout_info' %}">번아웃</a></li>
+                <li><a href="{% url 'pages:self_esteem_info' %}">자존감</a></li>
+                <li><a href="{% url 'pages:emotion_record_info' %}">감정 기복 / 조울증</a></li>
+                <li><a href="{% url 'pages:addiction_info' %}">중독</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_info' %}">수면 / 식욕</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>불안증이란?</h2>
+                <p>
+                    불안증은 과도한 걱정과 불안이 지속되어 일상생활에 지장을 주는 정신건강 문제입니다. 
+                    누구나 가끔은 불안을 느끼지만, 불안증은 그 강도와 지속시간이 심각하여 
+                    개인의 삶의 질을 크게 저하시킬 수 있습니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>불안증의 유형</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">일반화된 불안장애</h3>
+                        <p>
+                            다양한 일상적인 상황에 대해 과도하고 통제하기 어려운 걱정을 하는 상태입니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">공황장애</h3>
+                        <p>
+                            예상치 못한 공황발작이 반복적으로 일어나며, 
+                            다음 공황발작에 대한 지속적인 걱정을 하는 상태입니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">사회공포증</h3>
+                        <p>
+                            사회적 상황에서 부끄러움을 당하거나 평가받을 것에 대한 
+                            강한 두려움을 느끼는 상태입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>불안증의 증상</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">신체적 증상</h3>
+                        <ul>
+                            <li>심박수 증가, 숨가쁨</li>
+                            <li>떨림, 발한</li>
+                            <li>어지러움, 현기증</li>
+                            <li>구역질, 복통</li>
+                            <li>근육 긴장</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">정신적 증상</h3>
+                        <ul>
+                            <li>과도한 걱정</li>
+                            <li>집중력 저하</li>
+                            <li>잠들기 어려움</li>
+                            <li>짜증, 성격 변화</li>
+                            <li>통제력 상실에 대한 두려움</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>불안증 관리 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">호흡 훈련</h3>
+                        <p>
+                            깊고 천천히 호흡하는 방법을 연습하여 
+                            불안 증상을 완화할 수 있습니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">인지행동치료</h3>
+                        <p>
+                            부정적인 사고 패턴을 인식하고 
+                            더 건강한 사고방식으로 바꾸는 치료입니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">점진적 노출</h3>
+                        <p>
+                            두려워하는 상황에 점진적으로 노출시켜 
+                            불안에 대한 내성을 키우는 방법입니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">규칙적인 생활</h3>
+                        <p>
+                            충분한 수면, 규칙적인 식사, 운동을 통해 
+                            신체적 안정감을 회복할 수 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>도움이 필요하신가요?</h2>
+                <p style="margin-bottom: 30px;">
+                    불안증 관리에 어려움을 겪고 계시다면 전문가의 도움을 받아보세요.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="{% url 'pages:anxiety_management' %}" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">자가 관리 방법 보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
