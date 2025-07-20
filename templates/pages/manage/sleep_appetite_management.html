@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>자가 관리 방법</span>
+            <span class="separator">></span>
+            <span>수면/식욕 관리</span>
+        </div>
+        <h1 class="page-title">수면/식욕 자가 관리</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">자가 관리 방법</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_management' %}">스트레스 관리</a></li>
+                <li><a href="{% url 'pages:anxiety_management' %}">불안증 관리</a></li>
+                <li><a href="{% url 'pages:depression_management' %}">우울증 관리</a></li>
+                <li><a href="{% url 'pages:psychosis_management' %}">정신증 관리</a></li>
+                <li><a href="{% url 'pages:burnout_management' %}">번아웃 관리</a></li>
+                <li><a href="{% url 'pages:self_esteem_management' %}">자존감 관리</a></li>
+                <li><a href="{% url 'pages:emotion_record_management' %}">감정 기복 관리</a></li>
+                <li><a href="{% url 'pages:addiction_management' %}">중독 관리</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_management' %}" class="active">수면/식욕 관리</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>수면/식욕 관리의 기본 원칙</h2>
+                <p>
+                    수면과 식욕은 정신건강과 밀접한 관련이 있습니다.
+                    체계적인 관리 방법을 통해 건강한 수면과 식욕을 회복할 수 있습니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>수면 관리 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">수면 위생</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>일정한 시간에 기상하고 취침하기</li>
+                            <li>침실 환경을 어둡고 조용하게 유지</li>
+                            <li>취침 전 전자기기 사용 자제</li>
+                            <li>카페인 섭취 제한하기</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            건강한 수면 환경을 조성하여 수면의 질을 향상시킵니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">이완 기법</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>취침 전 따뜻한 목욕하기</li>
+                            <li>깊은 호흡 연습하기</li>
+                            <li>명상이나 요가 참여</li>
+                            <li>편안한 음악 감상</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            긴장을 풀고 마음을 진정시켜 수면을 돕습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>식욕 관리 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">규칙적인 식사</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>일정한 시간에 식사하기</li>
+                            <li>충분한 시간을 두고 천천히 먹기</li>
+                            <li>균형 잡힌 영양소 섭취</li>
+                            <li>과식이나 폭식 피하기</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            건강한 식습관을 형성하여 식욕을 정상화합니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">스트레스 관리</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>스트레스 요인 파악하기</li>
+                            <li>이완 기법 실시</li>
+                            <li>규칙적인 운동</li>
+                            <li>취미 활동 참여</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            스트레스를 줄여 식욕에 미치는 영향을 감소시킵니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>일상적 관리 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">규칙적인 생활</h3>
+                        <p>
+                            일정한 시간에 기상, 식사, 취침하여 
+                            신체 리듬을 안정화하고 수면과 식욕을 개선합니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">운동</h3>
+                        <p>
+                            규칙적인 운동을 통해 스트레스를 해소하고 
+                            수면의 질을 향상시킵니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">명상과 요가</h3>
+                        <p>
+                            정기적인 명상과 요가를 통해 마음을 진정시키고 
+                            스트레스를 감소시킵니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">취미 활동</h3>
+                        <p>
+                            좋아하는 활동을 통해 즐거움을 느끼고 
+                            스트레스를 해소합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>수면 장애 대처법</h2>
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 10px;">
+                    <h3 style="color: #333; margin-bottom: 20px;">수면 문제 해결</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: #dc3545; margin-bottom: 10px;">불면증</h4>
+                            <ul style="line-height: 1.6; color: #555;">
+                                <li>취침 전 이완 기법 실시</li>
+                                <li>수면 환경 개선</li>
+                                <li>카페인 섭취 제한</li>
+                                <li>규칙적인 생활 습관</li>
+                            </ul>
+                        </div>
+                        <div style="background: white; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: #28a745; margin-bottom: 10px;">과다 수면</h4>
+                            <ul style="line-height: 1.6; color: #555;">
+                                <li>점진적으로 기상 시간 조정</li>
+                                <li>활동량 증가</li>
+                                <li>명상이나 요가 참여</li>
+                                <li>전문가 상담 고려</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>식욕 장애 대처법</h2>
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 10px;">
+                    <h3 style="color: #333; margin-bottom: 20px;">식욕 문제 해결</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: #dc3545; margin-bottom: 10px;">식욕 부진</h4>
+                            <ul style="line-height: 1.6; color: #555;">
+                                <li>작은 양부터 시작하기</li>
+                                <li>좋아하는 음식 선택</li>
+                                <li>규칙적인 식사 시간</li>
+                                <li>스트레스 관리</li>
+                            </ul>
+                        </div>
+                        <div style="background: white; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: #28a745; margin-bottom: 10px;">과식</h4>
+                            <ul style="line-height: 1.6; color: #555;">
+                                <li>천천히 먹기</li>
+                                <li>식사량 조절</li>
+                                <li>스트레스 관리</li>
+                                <li>전문가 상담 고려</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>주의사항</h2>
+                <div style="background: #fff3cd; padding: 25px; border-radius: 8px; border-left: 4px solid #ffc107;">
+                    <h3 style="color: #856404; margin-bottom: 15px;">중요한 점</h3>
+                    <ul style="line-height: 1.8; color: #555;">
+                        <li>심한 수면/식욕 장애는 전문가의 치료가 필요할 수 있습니다</li>
+                        <li>기저 질환이 있을 수 있으므로 의료진과 상담하세요</li>
+                        <li>약물 치료와 함께 자가 관리법을 병행하는 것이 효과적입니다</li>
+                        <li>가족과 친구의 지지가 회복에 중요한 역할을 합니다</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>실천 계획 세우기</h2>
+                <p style="margin-bottom: 30px;">
+                    위의 방법들 중 본인에게 맞는 것을 선택하여 일상에 적용해보세요.
+                    꾸준한 실천을 통해 건강한 수면과 식욕을 회복할 수 있습니다.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">수면/식욕 검사하기</a>
+                    <a href="#" class="btn btn-outline-primary" style="border: 2px solid #007bff; color: #007bff; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: all 0.3s;">진행 상황 기록하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

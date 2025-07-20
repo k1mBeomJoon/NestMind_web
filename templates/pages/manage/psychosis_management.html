@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>자가 관리 방법</span>
+            <span class="separator">></span>
+            <span>정신증 관리</span>
+        </div>
+        <h1 class="page-title">정신증 자가 관리</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">자가 관리 방법</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_management' %}">스트레스 관리</a></li>
+                <li><a href="{% url 'pages:anxiety_management' %}">불안증 관리</a></li>
+                <li><a href="{% url 'pages:depression_management' %}">우울증 관리</a></li>
+                <li><a href="{% url 'pages:psychosis_management' %}" class="active">정신증 관리</a></li>
+                <li><a href="{% url 'pages:burnout_management' %}">번아웃 관리</a></li>
+                <li><a href="{% url 'pages:self_esteem_management' %}">자존감 관리</a></li>
+                <li><a href="{% url 'pages:emotion_record_management' %}">감정 기복 관리</a></li>
+                <li><a href="{% url 'pages:addiction_management' %}">중독 관리</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_management' %}">수면/식욕 관리</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>정신증 관리의 기본 원칙</h2>
+                <p>
+                    정신증은 현실과 비현실을 구분하는 능력에 문제가 생긴 상태입니다.
+                    전문가의 도움과 함께 체계적인 관리 방법을 통해 증상을 완화할 수 있습니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>일상적 관리 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">규칙적인 생활</h3>
+                        <p>
+                            일정한 시간에 기상, 식사, 취침하여 
+                            신체 리듬을 안정화하고 증상을 관리합니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">충분한 수면</h3>
+                        <p>
+                            하루 7-8시간의 질 좋은 수면을 통해 
+                            신경계를 안정화하고 증상을 완화합니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">스트레스 관리</h3>
+                        <p>
+                            스트레스를 줄이고 이완 기법을 통해 
+                            증상을 악화시키지 않도록 관리합니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">사회적 지원</h3>
+                        <p>
+                            가족, 친구, 전문가의 지지를 받아 
+                            외로움을 줄이고 회복을 돕습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>증상 관리 기법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">현실 확인 기법</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>다른 사람에게 확인 요청하기</li>
+                            <li>증거를 찾아보기</li>
+                            <li>논리적으로 생각해보기</li>
+                            <li>시간을 두고 판단하기</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            현실과 비현실을 구분하는 능력을 향상시킵니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">이완 기법</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>깊은 호흡 연습하기</li>
+                            <li>근육 이완법 실시</li>
+                            <li>명상이나 요가 참여</li>
+                            <li>편안한 음악 감상</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            긴장을 풀고 마음을 진정시킵니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>회복 지원 활동</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">취미 활동</h3>
+                        <p>
+                            좋아하는 활동에 몰입하여 긍정적인 
+                            경험을 쌓고 자존감을 향상시킵니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">운동</h3>
+                        <p>
+                            규칙적인 운동을 통해 신체 건강을 
+                            유지하고 기분을 개선합니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">예술 활동</h3>
+                        <p>
+                            그림, 음악, 글쓰기 등을 통해 
+                            감정을 표현하고 치유합니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">지원 그룹</h3>
+                        <p>
+                            같은 경험을 가진 사람들과 
+                            정보를 나누고 지지를 받습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>주의사항</h2>
+                <div style="background: #fff3cd; padding: 25px; border-radius: 8px; border-left: 4px solid #ffc107;">
+                    <h3 style="color: #856404; margin-bottom: 15px;">중요한 점</h3>
+                    <ul style="line-height: 1.8; color: #555;">
+                        <li>정신증은 전문가의 치료가 필요한 질환입니다</li>
+                        <li>자가 관리만으로는 완전한 회복이 어려울 수 있습니다</li>
+                        <li>증상이 심해지면 즉시 전문가에게 상담하세요</li>
+                        <li>약물 치료와 함께 자가 관리법을 병행하는 것이 효과적입니다</li>
+                        <li>가족과 친구의 지지가 회복에 중요한 역할을 합니다</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>전문가 상담</h2>
+                <p style="margin-bottom: 30px;">
+                    정신증은 전문적인 치료가 필요한 질환입니다. 
+                    증상이 지속되거나 심해지면 반드시 정신건강 전문가와 상담하세요.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">전문가 상담 예약</a>
+                    <a href="#" class="btn btn-outline-primary" style="border: 2px solid #007bff; color: #007bff; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: all 0.3s;">긴급 상담</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

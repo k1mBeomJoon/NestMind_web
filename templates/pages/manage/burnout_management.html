@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>자가 관리 방법</span>
+            <span class="separator">></span>
+            <span>번아웃 관리</span>
+        </div>
+        <h1 class="page-title">번아웃 자가 관리</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">자가 관리 방법</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_management' %}">스트레스 관리</a></li>
+                <li><a href="{% url 'pages:anxiety_management' %}">불안증 관리</a></li>
+                <li><a href="{% url 'pages:depression_management' %}">우울증 관리</a></li>
+                <li><a href="{% url 'pages:psychosis_management' %}">정신증 관리</a></li>
+                <li><a href="{% url 'pages:burnout_management' %}" class="active">번아웃 관리</a></li>
+                <li><a href="{% url 'pages:self_esteem_management' %}">자존감 관리</a></li>
+                <li><a href="{% url 'pages:emotion_record_management' %}">감정 기복 관리</a></li>
+                <li><a href="{% url 'pages:addiction_management' %}">중독 관리</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_management' %}">수면/식욕 관리</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>번아웃 관리의 기본 원칙</h2>
+                <p>
+                    번아웃은 장기간의 과도한 스트레스로 인해 발생하는 심리적, 신체적 고갈 상태입니다.
+                    체계적인 관리 방법을 통해 회복하고 재발을 방지할 수 있습니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>즉시 적용 가능한 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">경계 설정하기</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>업무와 개인 시간의 명확한 구분</li>
+                            <li>업무 시간 외 연락 차단</li>
+                            <li>휴식 시간 보장하기</li>
+                            <li>과도한 업무 요청 거절하기</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            업무와 개인 생활의 균형을 맞춰 번아웃을 예방합니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">우선순위 설정</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>중요하고 긴급한 일부터 처리</li>
+                            <li>불필요한 업무 제거하기</li>
+                            <li>업무량 조절하기</li>
+                            <li>완벽주의 완화하기</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            효율적인 업무 관리를 통해 스트레스를 감소시킵니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>일상적 관리 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">충분한 휴식</h3>
+                        <p>
+                            규칙적인 휴식과 휴가를 통해 
+                            신체와 정신을 회복시키고 에너지를 충전합니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">취미 활동</h3>
+                        <p>
+                            업무와 무관한 취미 활동을 통해 
+                            스트레스를 해소하고 즐거움을 찾습니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">사회적 연결</h3>
+                        <p>
+                            가족, 친구와의 정기적인 만남을 통해 
+                            지지 체계를 강화하고 외로움을 줄입니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">운동과 명상</h3>
+                        <p>
+                            규칙적인 운동과 명상을 통해 
+                            스트레스를 해소하고 마음을 진정시킵니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>회복 단계별 관리</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">1단계: 인정과 수용</h3>
+                        <ul style="line-height: 1.8; color: #555;">
+                            <li>번아웃 상태를 인정하기</li>
+                            <li>자신을 비난하지 않기</li>
+                            <li>회복에 시간이 필요함을 이해하기</li>
+                            <li>전문가 도움 요청하기</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">2단계: 회복 활동</h3>
+                        <ul style="line-height: 1.8; color: #555;">
+                            <li>충분한 휴식과 수면</li>
+                            <li>즐거운 활동 찾기</li>
+                            <li>스트레스 요인 제거</li>
+                            <li>건강한 생활 습관 형성</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">3단계: 재발 방지</h3>
+                        <ul style="line-height: 1.8; color: #555;">
+                            <li>경계 설정 연습</li>
+                            <li>스트레스 관리 기법 습득</li>
+                            <li>지지 체계 구축</li>
+                            <li>정기적인 자기 점검</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>직장에서의 관리</h2>
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 10px;">
+                    <h3 style="color: #333; margin-bottom: 20px;">업무 환경 개선</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: #dc3545; margin-bottom: 10px;">시간 관리</h4>
+                            <ul style="line-height: 1.6; color: #555;">
+                                <li>업무 시간 엄수하기</li>
+                                <li>정기적인 휴식 시간 확보</li>
+                                <li>업무량 조절하기</li>
+                                <li>우선순위 설정하기</li>
+                            </ul>
+                        </div>
+                        <div style="background: white; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: #28a745; margin-bottom: 10px;">소통 개선</h4>
+                            <ul style="line-height: 1.6; color: #555;">
+                                <li>상사와의 정기적 소통</li>
+                                <li>동료와의 협력 강화</li>
+                                <li>업무 개선 제안하기</li>
+                                <li>지지 체계 구축하기</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>실천 계획 세우기</h2>
+                <p style="margin-bottom: 30px;">
+                    위의 방법들 중 본인에게 맞는 것을 선택하여 일상에 적용해보세요.
+                    꾸준한 실천을 통해 번아웃을 예방하고 회복할 수 있습니다.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">번아웃 검사하기</a>
+                    <a href="#" class="btn btn-outline-primary" style="border: 2px solid #007bff; color: #007bff; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: all 0.3s;">진행 상황 기록하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

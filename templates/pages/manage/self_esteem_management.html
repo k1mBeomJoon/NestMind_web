@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>자가 관리 방법</span>
+            <span class="separator">></span>
+            <span>자존감 관리</span>
+        </div>
+        <h1 class="page-title">자존감 자가 관리</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">자가 관리 방법</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_management' %}">스트레스 관리</a></li>
+                <li><a href="{% url 'pages:anxiety_management' %}">불안증 관리</a></li>
+                <li><a href="{% url 'pages:depression_management' %}">우울증 관리</a></li>
+                <li><a href="{% url 'pages:psychosis_management' %}">정신증 관리</a></li>
+                <li><a href="{% url 'pages:burnout_management' %}">번아웃 관리</a></li>
+                <li><a href="{% url 'pages:self_esteem_management' %}" class="active">자존감 관리</a></li>
+                <li><a href="{% url 'pages:emotion_record_management' %}">감정 기복 관리</a></li>
+                <li><a href="{% url 'pages:addiction_management' %}">중독 관리</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_management' %}">수면/식욕 관리</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>자존감 관리의 기본 원칙</h2>
+                <p>
+                    자존감은 자신의 가치와 능력에 대한 긍정적인 평가입니다.
+                    체계적인 관리 방법을 통해 건강한 자존감을 형성하고 유지할 수 있습니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>즉시 적용 가능한 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">긍정적 자기 대화</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>매일 아침 긍정적인 문장 반복하기</li>
+                            <li>자신의 장점 3가지 말하기</li>
+                            <li>성취한 일들 되돌아보기</li>
+                            <li>자신을 격려하는 말하기</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            긍정적인 자기 대화를 통해 자존감을 향상시킵니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">성취 기록하기</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>하루에 성취한 일들 기록</li>
+                            <li>작은 성취도 포함하기</li>
+                            <li>감정과 함께 기록하기</li>
+                            <li>정기적으로 되돌아보기</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            성취 경험을 통해 자신감을 키웁니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>일상적 관리 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">자기 돌봄</h3>
+                        <p>
+                            자신을 소중히 여기고 건강한 생활을 통해 
+                            자신의 가치를 인식하고 자존감을 향상시킵니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">목표 설정</h3>
+                        <p>
+                            현실적이고 달성 가능한 목표를 설정하여 
+                            성취감을 느끼고 자신감을 키웁니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">사회적 연결</h3>
+                        <p>
+                            긍정적인 관계를 통해 지지를 받고 
+                            자신의 가치를 인식할 수 있습니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">취미 활동</h3>
+                        <p>
+                            좋아하는 활동을 통해 즐거움을 느끼고 
+                            자신의 능력을 발견할 수 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>인지적 관리 방법</h2>
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 10px;">
+                    <h3 style="color: #333; margin-bottom: 20px;">생각 패턴 바꾸기</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: #dc3545; margin-bottom: 10px;">부정적 사고</h4>
+                            <ul style="line-height: 1.6; color: #555;">
+                                <li>"나는 아무것도 못한다"</li>
+                                <li>"다른 사람들이 나를 싫어한다"</li>
+                                <li>"나는 가치가 없다"</li>
+                            </ul>
+                        </div>
+                        <div style="background: white; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: #28a745; margin-bottom: 10px;">건강한 사고</h4>
+                            <ul style="line-height: 1.6; color: #555;">
+                                <li>"나는 나만의 장점이 있다"</li>
+                                <li>"나는 사랑받을 가치가 있다"</li>
+                                <li>"나는 성장할 수 있다"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>자존감 향상 활동</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">감사 일기</h3>
+                        <p>
+                            매일 감사한 일들을 기록하여 
+                            삶의 긍정적인 면에 집중합니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">자기 격려</h3>
+                        <p>
+                            어려운 상황에서도 자신을 격려하고 
+                            긍정적인 메시지를 전달합니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">경계 설정</h3>
+                        <p>
+                            건강한 경계를 설정하여 자신의 
+                            가치와 존엄성을 지킵니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">자기 수용</h3>
+                        <p>
+                            완벽하지 않아도 괜찮다는 것을 인정하고 
+                            자신을 있는 그대로 받아들입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>실천 계획 세우기</h2>
+                <p style="margin-bottom: 30px;">
+                    위의 방법들 중 본인에게 맞는 것을 선택하여 일상에 적용해보세요.
+                    꾸준한 실천을 통해 건강한 자존감을 형성할 수 있습니다.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">자존감 검사하기</a>
+                    <a href="#" class="btn btn-outline-primary" style="border: 2px solid #007bff; color: #007bff; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: all 0.3s;">진행 상황 기록하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -39,6 +39,7 @@ urlpatterns = [
     # 질문 / 답변
     path('ask-question/', views.ask_question, name='ask_question'),
     path('answer-question/', views.answer_question, name='answer_question'),
+    path('question-detail/<int:question_id>/', views.question_detail, name='question_detail'),
     
     # ABOUT US
     path('nestmind-info/', views.nestmind_info, name='nestmind_info'),

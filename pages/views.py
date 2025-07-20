@@ -5,59 +5,59 @@ def mainpage(request):
 
 # 정신건강 정보
 def stress_info(request):
-    return render(request, 'pages/stress_info.html')
+    return render(request, 'pages/info/stress_info.html')
 
 def anxiety_info(request):
-    return render(request, 'pages/anxiety_info.html')
+    return render(request, 'pages/info/anxiety_info.html')
 
 def depression_info(request):
-    return render(request, 'pages/depression_info.html')
+    return render(request, 'pages/info/depression_info.html')
 
 def psychosis_info(request):
-    return render(request, 'pages/psychosis_info.html')
+    return render(request, 'pages/info/psychosis_info.html')
 
 def burnout_info(request):
-    return render(request, 'pages/burnout_info.html')
+    return render(request, 'pages/info/burnout_info.html')
 
 def self_esteem_info(request):
-    return render(request, 'pages/self_esteem_info.html')
+    return render(request, 'pages/info/self_esteem_info.html')
 
 def emotion_record_info(request):
-    return render(request, 'pages/emotion_record_info.html')
+    return render(request, 'pages/info/emotion_record_info.html')
 
 def addiction_info(request):
-    return render(request, 'pages/addiction_info.html')
+    return render(request, 'pages/info/addiction_info.html')
 
 def sleep_appetite_info(request):
-    return render(request, 'pages/sleep_appetite_info.html')
+    return render(request, 'pages/info/sleep_appetite_info.html')
 
 # 자가 관리 방법
 def stress_management(request):
-    return render(request, 'pages/stress_management.html')
+    return render(request, 'pages/manage/stress_management.html')
 
 def anxiety_management(request):
-    return render(request, 'pages/anxiety_management.html')
+    return render(request, 'pages/manage/anxiety_management.html')
 
 def depression_management(request):
-    return render(request, 'pages/depression_management.html')
+    return render(request, 'pages/manage/depression_management.html')
 
 def psychosis_management(request):
-    return render(request, 'pages/psychosis_management.html')
+    return render(request, 'pages/manage/psychosis_management.html')
 
 def burnout_management(request):
-    return render(request, 'pages/burnout_management.html')
+    return render(request, 'pages/manage/burnout_management.html')
 
 def self_esteem_management(request):
-    return render(request, 'pages/self_esteem_management.html')
+    return render(request, 'pages/manage/self_esteem_management.html')
 
 def emotion_record_management(request):
-    return render(request, 'pages/emotion_record_management.html')
+    return render(request, 'pages/manage/emotion_record_management.html')
 
 def addiction_management(request):
-    return render(request, 'pages/addiction_management.html')
+    return render(request, 'pages/manage/addiction_management.html')
 
 def sleep_appetite_management(request):
-    return render(request, 'pages/sleep_appetite_management.html')
+    return render(request, 'pages/manage/sleep_appetite_management.html')
 
 # 검사 / 리포트
 def love_type_test(request):
@@ -77,10 +77,13 @@ def create_report(request):
 
 # 질문 / 답변
 def ask_question(request):
-    return render(request, 'pages/ask_question.html')
+    return render(request, 'pages/qna/ask_question.html')
 
 def answer_question(request):
-    return render(request, 'pages/answer_question.html')
+    return render(request, 'pages/qna/answer_question.html')
+
+def question_detail(request, question_id):
+    return render(request, 'pages/qna/question_detail.html', {'question_id': question_id})
 
 # ABOUT US
 def nestmind_info(request):

@@ -363,9 +363,10 @@ body > *:not(.custom-navbar):not(.custom-footer-v2) {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - 160px);
+    min-height: calc(100vh - 200px);
     width: 100%;
     text-align: center;
+    padding: 20px 0;
 }
 
 .mainpage-title {
@@ -383,7 +384,7 @@ body > *:not(.custom-navbar):not(.custom-footer-v2) {
     height: 550px;
     object-fit: cover;
     border-radius: 0;
-    margin: 1.5rem auto;
+    margin: 1rem auto;
     box-shadow: none;
     border: none;
     display: block;
@@ -427,9 +428,9 @@ body > *:not(.custom-navbar):not(.custom-footer-v2) {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 40px;
-    min-height: 320px;
-    margin-bottom: 120px;
+    margin-top: 20px;
+    min-height: 280px;
+    margin-bottom: 80px;
 }
 
 .mainpage-quickmenu-list {
@@ -1152,5 +1153,77 @@ body > *:not(.custom-navbar):not(.custom-footer-v2) {
     
     .main-content {
         padding: 20px;
+    }
+    
+    /* 메인 페이지 모바일 반응형 */
+    .mainpage-center-container {
+        min-height: calc(100vh - 240px);
+        padding: 10px 0;
+    }
+    
+    .mainpage-image {
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+        margin: 0.5rem auto;
+    }
+    
+    .mainpage-quickmenu-section {
+        margin-top: 15px;
+        margin-bottom: 60px;
+    }
+    
+    .mainpage-quickmenu-list {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    
+    .mainpage-quickmenu-item {
+        width: 280px;
+        height: 180px;
+    }
+    
+    .mainpage-quickmenu-item img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 12px;
+    }
+    
+    .mainpage-quickmenu-label {
+        font-size: 1rem;
+    }
+}
+
+/* 더 작은 화면에서의 메인 페이지 최적화 */
+@media (max-width: 480px) {
+    .mainpage-center-container {
+        min-height: calc(100vh - 280px);
+        padding: 5px 0;
+    }
+    
+    .mainpage-image {
+        max-width: 300px;
+        margin: 0.3rem auto;
+    }
+    
+    .mainpage-quickmenu-section {
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+    
+    .mainpage-quickmenu-item {
+        width: 240px;
+        height: 160px;
+    }
+    
+    .mainpage-quickmenu-item img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+    
+    .mainpage-quickmenu-label {
+        font-size: 0.9rem;
     }
 }

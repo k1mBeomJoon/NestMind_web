@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>자가 관리 방법</span>
+            <span class="separator">></span>
+            <span>중독 관리</span>
+        </div>
+        <h1 class="page-title">중독 자가 관리</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">자가 관리 방법</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_management' %}">스트레스 관리</a></li>
+                <li><a href="{% url 'pages:anxiety_management' %}">불안증 관리</a></li>
+                <li><a href="{% url 'pages:depression_management' %}">우울증 관리</a></li>
+                <li><a href="{% url 'pages:psychosis_management' %}">정신증 관리</a></li>
+                <li><a href="{% url 'pages:burnout_management' %}">번아웃 관리</a></li>
+                <li><a href="{% url 'pages:self_esteem_management' %}">자존감 관리</a></li>
+                <li><a href="{% url 'pages:emotion_record_management' %}">감정 기복 관리</a></li>
+                <li><a href="{% url 'pages:addiction_management' %}" class="active">중독 관리</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_management' %}">수면/식욕 관리</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>중독 관리의 기본 원칙</h2>
+                <p>
+                    중독은 물질이나 행동에 대한 과도한 의존으로 일상생활에 지장을 주는 상태입니다.
+                    체계적인 관리 방법을 통해 중독을 극복하고 건강한 삶을 회복할 수 있습니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>즉시 적용 가능한 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">유발 요인 파악</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>중독 행동의 원인 분석하기</li>
+                            <li>스트레스 요인 파악하기</li>
+                            <li>감정 상태 기록하기</li>
+                            <li>환경적 요인 확인하기</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            중독의 원인을 파악하여 예방 전략을 세웁니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">대체 활동 찾기</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>건강한 취미 활동 찾기</li>
+                            <li>운동이나 스포츠 참여</li>
+                            <li>예술 활동이나 독서</li>
+                            <li>사회적 활동 참여</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            중독 행동을 대체할 수 있는 건강한 활동을 찾습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>일상적 관리 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">규칙적인 생활</h3>
+                        <p>
+                            일정한 시간에 기상, 식사, 취침하여 
+                            신체 리듬을 안정화하고 중독을 예방합니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">스트레스 관리</h3>
+                        <p>
+                            스트레스를 줄이고 이완 기법을 통해 
+                            중독 행동을 유발하는 요인을 관리합니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">사회적 지원</h3>
+                        <p>
+                            가족, 친구, 전문가의 지지를 받아 
+                            회복 과정을 돕고 외로움을 줄입니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">자기 돌봄</h3>
+                        <p>
+                            자신을 소중히 여기고 건강한 생활을 통해 
+                            자존감을 향상시킵니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>회복 단계별 관리</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">1단계: 인정과 동기</h3>
+                        <ul style="line-height: 1.8; color: #555;">
+                            <li>중독 상태를 인정하기</li>
+                            <li>변화에 대한 동기 부여</li>
+                            <li>회복에 대한 의지 다지기</li>
+                            <li>전문가 도움 요청하기</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">2단계: 행동 변화</h3>
+                        <ul style="line-height: 1.8; color: #555;">
+                            <li>중독 행동 중단하기</li>
+                            <li>대체 활동 찾기</li>
+                            <li>건강한 생활 습관 형성</li>
+                            <li>지지 체계 구축하기</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">3단계: 유지와 예방</h3>
+                        <ul style="line-height: 1.8; color: #555;">
+                            <li>회복 상태 유지하기</li>
+                            <li>재발 방지 전략 수립</li>
+                            <li>정기적인 자기 점검</li>
+                            <li>지속적인 성장 추구</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>주의사항</h2>
+                <div style="background: #fff3cd; padding: 25px; border-radius: 8px; border-left: 4px solid #ffc107;">
+                    <h3 style="color: #856404; margin-bottom: 15px;">중요한 점</h3>
+                    <ul style="line-height: 1.8; color: #555;">
+                        <li>중독은 전문가의 치료가 필요한 질환입니다</li>
+                        <li>자가 관리만으로는 완전한 회복이 어려울 수 있습니다</li>
+                        <li>심한 중독은 입원 치료가 필요할 수 있습니다</li>
+                        <li>약물 치료와 함께 자가 관리법을 병행하는 것이 효과적입니다</li>
+                        <li>가족과 친구의 지지가 회복에 중요한 역할을 합니다</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>전문가 상담</h2>
+                <p style="margin-bottom: 30px;">
+                    중독은 전문적인 치료가 필요한 질환입니다. 
+                    증상이 심하거나 지속되면 반드시 정신건강 전문가와 상담하세요.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">전문가 상담 예약</a>
+                    <a href="#" class="btn btn-outline-primary" style="border: 2px solid #007bff; color: #007bff; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: all 0.3s;">긴급 상담</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

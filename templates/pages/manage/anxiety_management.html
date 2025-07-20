@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <!-- 페이지 헤더 -->
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>자가 관리 방법</span>
+            <span class="separator">></span>
+            <span>불안증 관리</span>
+        </div>
+        <h1 class="page-title">불안증 자가 관리</h1>
+    </div>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="detail-page-content">
+        <!-- 사이드바 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">자가 관리 방법</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:stress_management' %}">스트레스 관리</a></li>
+                <li><a href="{% url 'pages:anxiety_management' %}" class="active">불안증 관리</a></li>
+                <li><a href="{% url 'pages:depression_management' %}">우울증 관리</a></li>
+                <li><a href="{% url 'pages:psychosis_management' %}">정신증 관리</a></li>
+                <li><a href="{% url 'pages:burnout_management' %}">번아웃 관리</a></li>
+                <li><a href="{% url 'pages:self_esteem_management' %}">자존감 관리</a></li>
+                <li><a href="{% url 'pages:emotion_record_management' %}">감정 기복 관리</a></li>
+                <li><a href="{% url 'pages:addiction_management' %}">중독 관리</a></li>
+                <li><a href="{% url 'pages:sleep_appetite_management' %}">수면/식욕 관리</a></li>
+            </ul>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <div class="content-section">
+                <h2>불안증 관리의 기본 원칙</h2>
+                <p>
+                    불안증은 과도한 걱정과 긴장으로 인해 일상생활에 지장을 주는 상태입니다.
+                    체계적인 관리 방법을 통해 불안을 조절하고 삶의 질을 향상시킬 수 있습니다.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>긴급 상황 대처법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">박스 호흡법</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>4초 동안 천천히 들이마시기</li>
+                            <li>4초 동안 숨을 참고 있기</li>
+                            <li>4초 동안 천천히 내쉬기</li>
+                            <li>4초 동안 숨을 참고 있기</li>
+                            <li>이 과정을 5-10회 반복하기</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            이 방법은 불안 증상을 즉시 완화시키고 마음을 진정시킵니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">근육 이완법</h3>
+                        <ol style="line-height: 1.8; color: #555;">
+                            <li>발가락부터 시작하여 각 근육군을 5초간 긴장</li>
+                            <li>10초간 완전히 이완하며 긴장감 해소</li>
+                            <li>다음 근육군으로 이동</li>
+                            <li>머리까지 순서대로 진행</li>
+                        </ol>
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">
+                            신체의 긴장을 풀어 불안감을 감소시킵니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>일상적 관리 방법</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: #e8f5e8; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #28a745; margin-bottom: 15px;">규칙적인 생활</h3>
+                        <p>
+                            일정한 시간에 기상, 식사, 취침하여 
+                            신체 리듬을 안정화하고 불안감을 감소시킵니다.
+                        </p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ffc107; margin-bottom: 15px;">명상과 요가</h3>
+                        <p>
+                            정기적인 명상과 요가를 통해 마음을 진정시키고 
+                            불안에 대한 반응을 조절할 수 있습니다.
+                        </p>
+                    </div>
+                    <div style="background: #d1ecf1; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #17a2b8; margin-bottom: 15px;">카페인 제한</h3>
+                        <p>
+                            커피, 차, 에너지 드링크 등의 카페인 섭취를 줄여 
+                            불안 증상을 악화시키지 않도록 합니다.
+                        </p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 25px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #dc3545; margin-bottom: 15px;">충분한 수면</h3>
+                        <p>
+                            하루 7-8시간의 질 좋은 수면을 통해 
+                            신경계를 안정화하고 불안감을 감소시킵니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>인지적 관리 방법</h2>
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 10px;">
+                    <h3 style="color: #333; margin-bottom: 20px;">생각 패턴 바꾸기</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: #dc3545; margin-bottom: 10px;">불안한 사고</h4>
+                            <ul style="line-height: 1.6; color: #555;">
+                                <li>"무슨 일이 생길까?"</li>
+                                <li>"내가 실패하면 어쩌지?"</li>
+                                <li>"다른 사람들이 나를 어떻게 볼까?"</li>
+                            </ul>
+                        </div>
+                        <div style="background: white; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: #28a745; margin-bottom: 10px;">건강한 사고</h4>
+                            <ul style="line-height: 1.6; color: #555;">
+                                <li>"지금 이 순간에 집중하자"</li>
+                                <li>"실패해도 배울 수 있다"</li>
+                                <li>"나는 나의 가치를 알고 있다"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>점진적 노출법</h2>
+                <p>
+                    불안을 유발하는 상황에 점진적으로 노출되어 두려움을 극복하는 방법입니다.
+                </p>
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin-top: 20px;">
+                    <h3 style="color: #333; margin-bottom: 15px;">실행 단계</h3>
+                    <ol style="line-height: 1.8; color: #555;">
+                        <li>불안을 유발하는 상황들을 목록으로 작성</li>
+                        <li>가장 약한 불안부터 강한 불안 순으로 정렬</li>
+                        <li>가장 약한 상황부터 점진적으로 노출</li>
+                        <li>각 단계에서 불안이 감소할 때까지 반복</li>
+                        <li>다음 단계로 진행</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="content-section" style="text-align: center; margin-top: 50px;">
+                <h2>실천 계획 세우기</h2>
+                <p style="margin-bottom: 30px;">
+                    위의 방법들 중 본인에게 맞는 것을 선택하여 일상에 적용해보세요.
+                    꾸준한 실천을 통해 불안 관리 능력을 향상시킬 수 있습니다.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#" class="btn btn-primary" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: background-color 0.3s;">불안증 검사하기</a>
+                    <a href="#" class="btn btn-outline-primary" style="border: 2px solid #007bff; color: #007bff; padding: 12px 30px; text-decoration: none; border-radius: 5px; transition: all 0.3s;">진행 상황 기록하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
