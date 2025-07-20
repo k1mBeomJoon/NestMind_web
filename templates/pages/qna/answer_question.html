@@ -32,10 +32,11 @@
                 
                 <!-- 카테고리 탭 -->
                 <div class="category-tabs">
-                    <button class="tab-btn active" data-category="mental_illness">정신 질환 의심</button>
-                    <button class="tab-btn" data-category="relationship">연애 고민</button>
-                    <button class="tab-btn" data-category="daily_life">일상 공유</button>
-                    <button class="tab-btn" data-category="other_advice">기타 조언 구하기</button>
+                    <a href="?category=mental_illness" class="tab-btn{% if selected_category == 'mental_illness' %} active{% endif %}">정신 질환 의심</a>
+                    <a href="?category=relationship" class="tab-btn{% if selected_category == 'relationship' %} active{% endif %}">연애 고민</a>
+                    <a href="?category=daily_life" class="tab-btn{% if selected_category == 'daily_life' %} active{% endif %}">일상 공유</a>
+                    <a href="?category=other_advice" class="tab-btn{% if selected_category == 'other_advice' %} active{% endif %}">기타 조언 구하기</a>
+                    <a href="?" class="tab-btn{% if not selected_category %} active{% endif %}">전체</a>
                 </div>
 
                 <!-- 게시글 목록 테이블 -->
@@ -50,54 +51,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                        {% for q in questions %}
                             <tr>
-                                <td>24</td>
-                                <td><a href="{% url 'pages:question_detail' question_id=24 %}">최근 들어 여자친구가 이상합니다..</a></td>
-                                <td>문상훈</td>
-                                <td>2025-07-12</td>
+                                <td>{{ q.id }}</td>
+                                <td><a href="{% url 'pages:question_detail' question_id=q.id %}">{{ q.title }}</a></td>
+                                <td>{{ q.author.first_name }}</td>
+                                <td>{{ q.created_at|date:'Y-m-d H:i' }}</td>
                             </tr>
-                            <tr>
-                                <td>23</td>
-                                <td><a href="{% url 'pages:question_detail' question_id=23 %}">요즘 들어 부쩍 무기력한 날이 많아진 것 같은데</a></td>
-                                <td>인생 쓰다</td>
-                                <td>2025-07-11</td>
-                            </tr>
-                            <tr>
-                                <td>22</td>
-                                <td><a href="{% url 'pages:question_detail' question_id=22 %}">아침마다 조깅 뛰었더니 확실히 효과 있더라 얘들아</a></td>
-                                <td>아모띠</td>
-                                <td>2025-07-10</td>
-                            </tr>
-                            <tr>
-                                <td>21</td>
-                                <td><a href="{% url 'pages:question_detail' question_id=21 %}">아니 이거는 뭐 어쩌라는 거야? 이거 밀당이야?</a></td>
-                                <td>곽튜브</td>
-                                <td>2025-07-09</td>
-                            </tr>
-                            <tr>
-                                <td>20</td>
-                                <td><a href="{% url 'pages:question_detail' question_id=20 %}">스트레스 때문에 잠을 잘 못 자고 있어요</a></td>
-                                <td>잠잘자</td>
-                                <td>2025-07-08</td>
-                            </tr>
-                            <tr>
-                                <td>19</td>
-                                <td><a href="{% url 'pages:question_detail' question_id=19 %}">친구와의 관계가 어색해졌어요</a></td>
-                                <td>친구사랑</td>
-                                <td>2025-07-07</td>
-                            </tr>
-                            <tr>
-                                <td>18</td>
-                                <td><a href="{% url 'pages:question_detail' question_id=18 %}">취업 준비하면서 불안감이 심해요</a></td>
-                                <td>취준생</td>
-                                <td>2025-07-06</td>
-                            </tr>
-                            <tr>
-                                <td>17</td>
-                                <td><a href="{% url 'pages:question_detail' question_id=17 %}">가족과 소통이 안 되는 것 같아요</a></td>
-                                <td>가족사랑</td>
-                                <td>2025-07-05</td>
-                            </tr>
+                        {% empty %}
+                            <tr><td colspan="4">등록된 글이 없습니다.</td></tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>

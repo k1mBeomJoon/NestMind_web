@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import QnAQuestion, QnAComment
+from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 def mainpage(request):
     return render(request, 'pages/mainpage.html')
@@ -76,14 +80,48 @@ def create_report(request):
     return render(request, 'pages/create_report.html')
 
 # 질문 / 답변
+
+@login_required(login_url='/accounts/login_real/')
 def ask_question(request):
+    if request.method == 'POST':
+        category = request.POST.get('category')
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        QnAQuestion.objects.create(
+            category=category,
+            title=title,
+            content=content,
+            author=request.user,
+            created_at=timezone.now(),
+            updated_at=timezone.now(),
+        )
+        return redirect('pages:answer_question')
     return render(request, 'pages/qna/ask_question.html')
 
 def answer_question(request):
-    return render(request, 'pages/qna/answer_question.html')
+    category = request.GET.get('category')
+    if category:
+        questions = QnAQuestion.objects.filter(category=category).order_by('-created_at')
+    else:
+        questions = QnAQuestion.objects.all().order_by('-created_at')
+    return render(request, 'pages/qna/answer_question.html', {'questions': questions, 'selected_category': category})
 
 def question_detail(request, question_id):
-    return render(request, 'pages/qna/question_detail.html', {'question_id': question_id})
+    question = get_object_or_404(QnAQuestion, id=question_id)
+    comments = question.comments.order_by('created_at')
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('/accounts/login_real/?next=' + request.path)
+        content = request.POST.get('comment_content')
+        if content:
+            QnAComment.objects.create(
+                question=question,
+                author=request.user,
+                content=content,
+                created_at=timezone.now(),
+            )
+            return redirect('pages:question_detail', question_id=question_id)
+    return render(request, 'pages/qna/question_detail.html', {'question': question, 'comments': comments})
 
 # ABOUT US
 def nestmind_info(request):
