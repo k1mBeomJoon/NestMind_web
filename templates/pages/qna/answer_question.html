@@ -32,11 +32,11 @@
                 
                 <!-- 카테고리 탭 -->
                 <div class="category-tabs">
+                    <a href="?" class="tab-btn{% if not selected_category %} active{% endif %}">전체</a>
                     <a href="?category=mental_illness" class="tab-btn{% if selected_category == 'mental_illness' %} active{% endif %}">정신 질환 의심</a>
                     <a href="?category=relationship" class="tab-btn{% if selected_category == 'relationship' %} active{% endif %}">연애 고민</a>
                     <a href="?category=daily_life" class="tab-btn{% if selected_category == 'daily_life' %} active{% endif %}">일상 공유</a>
                     <a href="?category=other_advice" class="tab-btn{% if selected_category == 'other_advice' %} active{% endif %}">기타 조언 구하기</a>
-                    <a href="?" class="tab-btn{% if not selected_category %} active{% endif %}">전체</a>
                 </div>
 
                 <!-- 게시글 목록 테이블 -->
@@ -108,6 +108,16 @@
     color: #666;
     transition: all 0.3s;
     border-bottom: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+    text-decoration: none;
 }
 
 .tab-btn:hover {
