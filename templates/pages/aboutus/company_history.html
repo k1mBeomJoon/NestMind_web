@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>About Us</span>
+            <span class="separator">></span>
+            <span>기업 History</span>
+        </div>
+        <h1 class="page-title">기업 History</h1>
+    </div>
+    <div class="detail-page-content">
+        <div class="sidebar">
+            <h3 class="sidebar-title">About Us</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:nestmind' %}">NestMind</a></li>
+                <li><a href="{% url 'pages:company_history' %}" class="active">기업 History</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="board-container">
+                <h2 class="board-title">회사 소개</h2>
+                <p style="padding: 20px; font-size: 1.1rem; color: #333;">
+                    (주)마인드네스트는 2020년에 설립된 정신 건강 및 웰빙 분야의 선도 기업입니다.<br><br>
+                    저희는 혁신적인 IT 기술과 심리학적 전문성을 결합하여, 모두가 쉽게 접근할 수 있는 정신 건강 플랫폼을 개발하고 있습니다.<br><br>
+                    신뢰와 소통을 바탕으로, 사용자 중심의 서비스를 제공하며 사회적 가치를 실현하는 것을 목표로 하고 있습니다.
+                </p>
+                <h3 style="padding-left: 20px; color: #007bff;">연혁</h3>
+                <ul style="padding-left: 40px;">
+                    <li>2020년: (주)마인드네스트 설립</li>
+                    <li>2021년: NestMind 플랫폼 베타 서비스 오픈</li>
+                    <li>2022년: 정식 서비스 론칭 및 1만 회원 돌파</li>
+                    <li>2023년: 전문가 상담 서비스 및 모바일 앱 출시</li>
+                    <li>2024년: 기업 고객 대상 B2B 서비스 확장</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

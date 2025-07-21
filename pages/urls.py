@@ -42,7 +42,7 @@ urlpatterns = [
     path('question-detail/<int:question_id>/', views.question_detail, name='question_detail'),
     
     # ABOUT US
-    path('nestmind-info/', views.nestmind_info, name='nestmind_info'),
+    path('nestmind/', views.nestmind, name='nestmind'),
     path('company-history/', views.company_history, name='company_history'),
     
     # 고객지원

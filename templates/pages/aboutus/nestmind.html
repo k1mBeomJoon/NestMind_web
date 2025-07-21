@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">></span>
+            <span>About Us</span>
+            <span class="separator">></span>
+            <span>NestMind</span>
+        </div>
+        <h1 class="page-title">인사말</h1>
+    </div>
+    <div class="detail-page-content">
+        <div class="sidebar">
+            <h3 class="sidebar-title">About Us</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:nestmind' %}" class="active">NestMind</a></li>
+                <li><a href="{% url 'pages:company_history' %}">기업 History</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div style="display: flex; gap: 40px; align-items: flex-start;">
+                <!-- 좌측: 아이콘 -->
+                <div style="flex: 0 0 300px; display: flex; flex-direction: column; align-items: center;">
+                    <img src="{% static 'icon.png' %}" alt="NestMind Logo" style="width: 220px; max-width: 100%; margin-bottom: 20px; background: white; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 18px;" />
+                </div>
+                <!-- 우측: 소개글 -->
+                <div style="flex: 1;">
+                    <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 18px; color: #222;">NestMind</h2>
+                    <p style="font-size: 1.1rem; color: #333; line-height: 1.8; margin-bottom: 18px;">
+                        <b>NestMind</b>는 바쁘고 지친 일상 속에서 자신조차 돌아볼 여유 없이 살아가는 이들에게 잠시 감정을 매만질 수 있는 쉼의 공간을 만들어주기 위해 시작된 디지털 멘탈 케어 플랫폼입니다.<br><br>
+                        우리는 누구나 전문 상담 없이도 자신의 감정과 상황을 이해하고 정리할 수 있는 도구가 필요하다고 믿습니다.<br><br>
+                        <b>NestMind</b>는 복잡한 언어가 아닌 간단한 자기 테스트와 감정 리포트를 통해, 사용자가 자신의 내면을 탐색하고, 삶의 작은 실마리를 발견할 수 있도록 돕고자 합니다.
+                    </p>
+                    <ul style="margin-bottom: 18px; font-size: 1.05rem; color: #222; line-height: 1.7; padding-left: 20px;">
+                        <li>4가지 자기 심리 테스트</li>
+                        <li>검사 결과를 기반으로 한 유형별 리포트 제공</li>
+                        <li>자가 관리에 필요한 카테고리별 감정 관리 팁</li>
+                        <li>사용자 간의 경험 공유를 위한 질문/답변 공간</li>
+                        <li>나의 감정과 경험 이력을 한눈에 볼 수 있는 마이페이지</li>
+                    </ul>
+                    <p style="font-size: 1.1rem; color: #333; line-height: 1.8; margin-bottom: 18px;">
+                        <b>NestMind</b>는 특히 20~30대 청년층이 겪는 사회적 압박, 감정의 위기, 관계 스트레스 등을 부담 없이 탐색하고 이해할 수 있도록 돕는 데에 집중하고 있습니다. 여기서는 완전히 안아도 괜찮고, 힘들다고 말해도 괜찮습니다. 감정을 감추는 대신, 그 조각들이 바로 쉴 수 있는 디지털 쉼터가 되어드리겠습니다.
+                    </p>
+                    <p style="font-size: 1.1rem; color: #333; line-height: 1.8;">
+                        <b>NestMind</b>는 따뜻한 기술과 진심 어린 공감으로, 당신의 하루에 조용히 머물겠습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

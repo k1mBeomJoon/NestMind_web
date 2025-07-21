@@ -124,11 +124,11 @@ def question_detail(request, question_id):
     return render(request, 'pages/qna/question_detail.html', {'question': question, 'comments': comments})
 
 # ABOUT US
-def nestmind_info(request):
-    return render(request, 'pages/nestmind_info.html')
+def nestmind(request):
+    return render(request, 'pages/aboutus/nestmind.html')
 
 def company_history(request):
-    return render(request, 'pages/company_history.html')
+    return render(request, 'pages/aboutus/company_history.html')
 
 # 고객지원
 def faq(request):
