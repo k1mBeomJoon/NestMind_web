@@ -4,9 +4,11 @@ from accounts.forms import SignupForm
 from django.contrib.auth import views as auth_views
 from django.http import HttpRequest, JsonResponse
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 import json
+from django.contrib import messages
 
 def signup(request):
     if request.method == "POST":
@@ -83,4 +85,57 @@ def check_duplicate(request):
         else:
             return JsonResponse({'success': False, 'message': '잘못된 필드 타입입니다.'})
     
+    return JsonResponse({'success': False, 'message': '잘못된 요청입니다.'})
+
+@csrf_exempt
+@login_required
+def change_nickname(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        new_nickname = data.get('nickname', '').strip()
+        if not new_nickname:
+            return JsonResponse({'success': False, 'message': '닉네임을 입력해주세요.'})
+        if User.objects.filter(first_name=new_nickname).exclude(id=request.user.id).exists():
+            return JsonResponse({'success': False, 'message': '이미 사용 중인 닉네임입니다.'})
+        request.user.first_name = new_nickname
+        request.user.save()
+        return JsonResponse({'success': True, 'message': '닉네임이 변경되었습니다.'})
+    return JsonResponse({'success': False, 'message': '잘못된 요청입니다.'})
+
+@csrf_exempt
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        current = data.get('current_password', '')
+        new = data.get('new_password', '')
+        new2 = data.get('new_password2', '')
+        if not (current and new and new2):
+            return JsonResponse({'success': False, 'message': '모든 항목을 입력해주세요.'})
+        if new != new2:
+            return JsonResponse({'success': False, 'message': '새 비밀번호가 일치하지 않습니다.'})
+        if not request.user.check_password(current):
+            return JsonResponse({'success': False, 'message': '현재 비밀번호가 올바르지 않습니다.'})
+        # 비밀번호 유효성 검사(간단 예시)
+        if len(new) < 8 or len(new) > 20:
+            return JsonResponse({'success': False, 'message': '비밀번호는 8~20자여야 합니다.'})
+        if request.user.username in new or request.user.first_name in new:
+            return JsonResponse({'success': False, 'message': '아이디/닉네임을 포함할 수 없습니다.'})
+        if any(new.count(c*3) > 0 for c in set(new)):
+            return JsonResponse({'success': False, 'message': '동일한 문자/숫자 3회 이상 반복 불가.'})
+        request.user.set_password(new)
+        request.user.save()
+        update_session_auth_hash(request, request.user)
+        return JsonResponse({'success': True, 'message': '비밀번호가 변경되었습니다.'})
+    return JsonResponse({'success': False, 'message': '잘못된 요청입니다.'})
+
+@csrf_exempt
+@login_required
+def withdraw(request):
+    if request.method == 'POST':
+        user = request.user
+        from django.contrib.auth import logout
+        logout(request)
+        user.delete()
+        return JsonResponse({'success': True, 'message': '회원 탈퇴가 완료되었습니다.'})
     return JsonResponse({'success': False, 'message': '잘못된 요청입니다.'})

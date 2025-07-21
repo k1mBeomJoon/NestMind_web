@@ -35,6 +35,7 @@ urlpatterns = [
     path('personality-test/', views.personality_test, name='personality_test'),
     path('mental-health-test/', views.mental_health_test, name='mental_health_test'),
     path('create-report/', views.create_report, name='create_report'),
+    path('report/<int:report_id>/', views.report_detail, name='report_detail'),
     
     # 질문 / 답변
     path('ask-question/', views.ask_question, name='ask_question'),

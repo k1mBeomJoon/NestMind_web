@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="detail-page-container">
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">&gt;</span>
+            <span>마이페이지</span>
+            <span class="separator">&gt;</span>
+            <span>프로필</span>
+        </div>
+        <h1 class="page-title">프로필</h1>
+    </div>
+    <div class="detail-page-content">
+        <div class="sidebar">
+            <h3 class="sidebar-title">마이페이지</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:test_history' %}">테스트 / 검사 내역</a></li>
+                <li><a href="{% url 'pages:report_view' %}">리포트 조회</a></li>
+                <li><a href="{% url 'pages:question_history' %}">질문 내역</a></li>
+                <li><a href="{% url 'pages:inquiry_history' %}">1:1 문의 내역</a></li>
+                <li><a href="{% url 'pages:profile' %}" class="active">프로필</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="profile-container" style="max-width:480px; margin:0 auto; background:white; border-radius:18px; box-shadow:0 4px 24px rgba(37,131,230,0.10); padding:44px 36px 36px 36px; position:relative;">
+                <div style="display:flex; align-items:center; gap:18px; margin-bottom:28px;">
+                    <div style="width:56px; height:56px; border-radius:50%; background:#eaf3fc; display:flex; align-items:center; justify-content:center; font-size:2.1rem; color:#2583e6; font-weight:bold; box-shadow:0 2px 8px rgba(37,131,230,0.08);">
+                        <span>{{ user.first_name|default:user.username|slice:":1"|upper }}</span>
+                    </div>
+                    <div>
+                        <div style="font-size:1.35rem; font-weight:700; color:#222; margin-bottom:2px;">
+                            <span id="nickname-display">{{ user.first_name|default:user.username }}</span>
+                            <span id="nickname-edit-area" style="display:none;">
+                                <input type="text" id="nickname-input" value="{{ user.first_name|default:user.username }}" maxlength="20" style="width:160px;">
+                                <button id="nickname-check-btn" class="btn btn-outline-secondary btn-sm">중복검사</button>
+                                <button id="nickname-save-btn" class="btn btn-primary btn-sm" style="display:none;">완료</button>
+                            </span>
+                        </div>
+                        <div style="font-size:1.05rem; color:#888;">아이디: {{ user.username }}</div>
+                    </div>
+                </div>
+                <div style="background:#f8fafd; border-radius:10px; padding:18px 18px 12px 18px; margin-bottom:22px; border:1px solid #e3eaf3;">
+                    <div style="font-size:1.05rem; color:#666; margin-bottom:6px;">가입일: <b style="color:#2583e6;">{{ user.date_joined|date:'Y-m-d' }}</b></div>
+                    <div style="font-size:1.05rem; color:#666; margin-bottom:6px;">
+                        <b style="color:#007bff;">최근 연애유형 검사</b>:
+                        {% if recent_love_type %}
+                            {{ recent_love_type.score }}점 ({{ recent_love_type.created_at|date:'Y-m-d' }})
+                        {% else %}-{% endif %}
+                    </div>
+                    <div style="font-size:1.05rem; color:#666; margin-bottom:6px;">
+                        <b style="color:#007bff;">최근 감정표현 스타일 검사</b>:
+                        {% if recent_emotion_style %}
+                            {{ recent_emotion_style.score }}점 ({{ recent_emotion_style.created_at|date:'Y-m-d' }})
+                        {% else %}-{% endif %}
+                    </div>
+                    <div style="font-size:1.05rem; color:#666; margin-bottom:6px;">
+                        <b style="color:#007bff;">최근 성향 유형 검사</b>:
+                        {% if recent_personality %}
+                            {{ recent_personality.score }}점 ({{ recent_personality.created_at|date:'Y-m-d' }})
+                        {% else %}-{% endif %}
+                    </div>
+                    <div style="font-size:1.05rem; color:#666; margin-bottom:10px;">
+                        <b style="color:#007bff;">최근 정신건강 검사</b>:
+                        {% if recent_mental_health %}
+                            {{ recent_mental_health.score }}점 ({{ recent_mental_health.created_at|date:'Y-m-d' }})
+                        {% else %}-{% endif %}
+                    </div>
+                    <div style="font-size:1.08rem; color:#222; background:#eaf3fc; border-radius:7px; padding:8px 0; text-align:center; margin-top:10px; font-weight:bold;">
+                        최근 유형 :
+                        {% if recent_report_type %}
+                            <span style="color:#2583e6;">{{ recent_report_type }} : {{ recent_report_type_name }}</span>
+                        {% else %}-{% endif %}
+                    </div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:14px; margin-top:18px;">
+                    <a href="#" id="nickname-edit-btn" class="btn btn-outline-primary" style="font-size:1.08rem; padding:12px 0; border-radius:8px;">닉네임 변경</a>
+                    <a href="#" id="password-edit-btn" class="btn btn-outline-primary" style="font-size:1.08rem; padding:12px 0; border-radius:8px;">비밀번호 변경</a>
+                    <a href="#" id="withdraw-btn" class="btn btn-outline-danger" style="font-size:1.08rem; padding:12px 0; border-radius:8px;">회원 탈퇴</a>
+                </div>
+                <!-- 비밀번호 변경 영역 -->
+                <div id="password-edit-area" style="display:none; margin-top:28px;">
+                    <div style="margin-bottom:10px; font-weight:bold;">비밀번호 변경</div>
+                    <input type="password" id="current-password" class="form-control" placeholder="현재 비밀번호" style="margin-bottom:8px;">
+                    <input type="password" id="new-password" class="form-control" placeholder="새 비밀번호" style="margin-bottom:8px;">
+                    <input type="password" id="new-password2" class="form-control" placeholder="새 비밀번호 확인" style="margin-bottom:8px;">
+                    <ul style="font-size:0.95rem; color:#888; margin-bottom:8px;">
+                        <li>8~20자 영문, 숫자, 특수문자 조합</li>
+                        <li>동일한 문자/숫자 3회 이상 반복 불가</li>
+                        <li>아이디/닉네임 포함 불가</li>
+                    </ul>
+                    <button id="password-save-btn" class="btn btn-primary btn-sm">완료</button>
+                    <button id="password-cancel-btn" class="btn btn-outline-secondary btn-sm">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 회원 탈퇴 팝업 -->
+<div id="withdraw-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.25); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:white; border-radius:12px; box-shadow:0 2px 16px rgba(0,0,0,0.18); padding:40px 32px; text-align:center; min-width:320px; max-width:90vw; margin:0 auto;">
+        <div style="font-size:1.1rem; color:#222; margin-bottom:18px;">정말 회원 탈퇴를 진행하시겠습니까?<br><span style="color:#d32f2f;">탈퇴 시 모든 정보가 말소되며 복구가 불가합니다.</span></div>
+        <div style="margin-bottom:18px; color:#888; font-size:0.98rem;">작성한 게시글, 검사 결과, 리포트 등 모든 데이터가 삭제됩니다.</div>
+        <button id="withdraw-confirm-btn" class="btn btn-danger" style="width:120px; font-size:1.1rem;">탈퇴하기</button>
+        <button id="withdraw-cancel-btn" class="btn btn-outline-secondary" style="width:120px; font-size:1.1rem; margin-left:12px;">취소</button>
+    </div>
+</div>
+<!-- 회원 탈퇴 완료 팝업 -->
+<div id="withdraw-complete-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.25); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:white; border-radius:12px; box-shadow:0 2px 16px rgba(0,0,0,0.18); padding:40px 32px; text-align:center; min-width:320px; max-width:90vw; margin:0 auto;">
+        <div style="font-size:1.1rem; color:#222; margin-bottom:18px;">회원 탈퇴가 완료되었습니다.<br>이용해주셔서 감사합니다.</div>
+        <button id="withdraw-complete-ok" class="btn btn-primary" style="width:120px; font-size:1.1rem;">확인</button>
+    </div>
+</div>
+<script>
+// 닉네임 변경
+const nicknameEditBtn = document.getElementById('nickname-edit-btn');
+const nicknameDisplay = document.getElementById('nickname-display');
+const nicknameEditArea = document.getElementById('nickname-edit-area');
+const nicknameCheckBtn = document.getElementById('nickname-check-btn');
+const nicknameSaveBtn = document.getElementById('nickname-save-btn');
+let nicknameChecked = false;
+nicknameEditBtn.onclick = function(e) {
+    e.preventDefault();
+    nicknameDisplay.style.display = 'none';
+    nicknameEditArea.style.display = '';
+    nicknameChecked = false;
+    nicknameSaveBtn.style.display = 'none';
+};
+nicknameCheckBtn.onclick = function() {
+    const val = document.getElementById('nickname-input').value.trim();
+    if (!val) { alert('닉네임을 입력해주세요.'); return; }
+    fetch('/accounts/check-duplicate/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken') },
+        body: JSON.stringify({ type: 'nickname', value: val })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            nicknameChecked = true;
+            nicknameSaveBtn.style.display = '';
+            alert('사용 가능한 닉네임입니다.');
+        } else {
+            nicknameChecked = false;
+            nicknameSaveBtn.style.display = 'none';
+            alert(data.message);
+        }
+    });
+};
+nicknameSaveBtn.onclick = function() {
+    if (!nicknameChecked) { alert('중복검사를 먼저 해주세요.'); return; }
+    const val = document.getElementById('nickname-input').value.trim();
+    fetch('/accounts/change-nickname/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken') },
+        body: JSON.stringify({ nickname: val })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            nicknameDisplay.textContent = val;
+            nicknameDisplay.style.display = '';
+            nicknameEditArea.style.display = 'none';
+            alert('닉네임이 변경되었습니다.');
+        } else {
+            alert(data.message);
+        }
+    });
+};
+// 비밀번호 변경
+const passwordEditBtn = document.getElementById('password-edit-btn');
+const passwordEditArea = document.getElementById('password-edit-area');
+const passwordSaveBtn = document.getElementById('password-save-btn');
+const passwordCancelBtn = document.getElementById('password-cancel-btn');
+passwordEditBtn.onclick = function(e) {
+    e.preventDefault();
+    passwordEditArea.style.display = '';
+};
+passwordCancelBtn.onclick = function() {
+    passwordEditArea.style.display = 'none';
+};
+passwordSaveBtn.onclick = function() {
+    const current = document.getElementById('current-password').value;
+    const newpw = document.getElementById('new-password').value;
+    const newpw2 = document.getElementById('new-password2').value;
+    fetch('/accounts/change-password/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken') },
+        body: JSON.stringify({ current_password: current, new_password: newpw, new_password2: newpw2 })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            passwordEditArea.style.display = 'none';
+            alert('비밀번호가 변경되었습니다.');
+        } else {
+            alert(data.message);
+        }
+    });
+};
+// 회원 탈퇴
+const withdrawBtn = document.getElementById('withdraw-btn');
+const withdrawModal = document.getElementById('withdraw-modal');
+const withdrawConfirmBtn = document.getElementById('withdraw-confirm-btn');
+const withdrawCancelBtn = document.getElementById('withdraw-cancel-btn');
+const withdrawCompleteModal = document.getElementById('withdraw-complete-modal');
+const withdrawCompleteOk = document.getElementById('withdraw-complete-ok');
+withdrawBtn.onclick = function(e) {
+    e.preventDefault();
+    withdrawModal.style.display = 'flex';
+};
+withdrawCancelBtn.onclick = function() {
+    withdrawModal.style.display = 'none';
+};
+withdrawConfirmBtn.onclick = function() {
+    fetch('/accounts/withdraw/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken') },
+        body: JSON.stringify({})
+    })
+    .then(res => res.json())
+    .then(data => {
+        withdrawModal.style.display = 'none';
+        if (data.success) {
+            withdrawCompleteModal.style.display = 'flex';
+        } else {
+            alert(data.message);
+        }
+    });
+};
+withdrawCompleteOk.onclick = function() {
+    // TODO: 로그아웃 및 메인페이지 이동
+    window.location.href = '/';
+};
+// CSRF 토큰 함수 추가
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+{% endblock %} 

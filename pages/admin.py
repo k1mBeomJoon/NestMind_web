@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import QnAQuestion, QnAComment, FAQ, Notice, Inquiry, LoveTypeQuestion, LoveTypeTestResult, EmotionStyleQuestion, EmotionStyleTestResult, PersonalityQuestion, PersonalityTestResult, MentalHealthQuestion, MentalHealthTestResult
+from .models import QnAQuestion, QnAComment, FAQ, Notice, Inquiry, LoveTypeQuestion, LoveTypeTestResult, EmotionStyleQuestion, EmotionStyleTestResult, PersonalityQuestion, PersonalityTestResult, MentalHealthQuestion, MentalHealthTestResult, ReportType, Report
 
 class QnACommentInline(admin.TabularInline):
     model = QnAComment
@@ -53,10 +53,14 @@ admin.site.register(FAQ)
 admin.site.register(Notice)
 
 class InquiryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'category', 'title', 'created_at', 'answer')
+    list_display = ('id', 'user', 'category', 'title', 'created_at', 'answer_status')
     list_filter = ('category', 'created_at')
     search_fields = ('title', 'content', 'user__username')
-    readonly_fields = ('content', 'answer')
+    readonly_fields = ('content',)
+    fields = ('user', 'category', 'title', 'content', 'answer')
+    def answer_status(self, obj):
+        return '답변 완료' if obj.answer else '미답변'
+    answer_status.short_description = '답변 상태'
 
 admin.site.register(Inquiry, InquiryAdmin)
 
@@ -96,6 +100,14 @@ class MentalHealthTestResultAdmin(admin.ModelAdmin):
     list_filter = ('test_type', 'created_at')
     search_fields = ('user__username',)
 
+class ReportTypeAdmin(admin.ModelAdmin):
+    list_display = ('type_code', 'type_name')
+    search_fields = ('type_code', 'type_name')
+
+class ReportAdmin(admin.ModelAdmin):
+    list_display = ('user', 'report_type', 'created_at')
+    search_fields = ('user__username', 'report_type__type_code')
+
 admin.site.register(LoveTypeQuestion, LoveTypeQuestionAdmin)
 admin.site.register(LoveTypeTestResult, LoveTypeTestResultAdmin)
 admin.site.register(EmotionStyleQuestion, EmotionStyleQuestionAdmin)
@@ -104,3 +116,5 @@ admin.site.register(PersonalityQuestion, PersonalityQuestionAdmin)
 admin.site.register(PersonalityTestResult, PersonalityTestResultAdmin)
 admin.site.register(MentalHealthQuestion, MentalHealthQuestionAdmin)
 admin.site.register(MentalHealthTestResult, MentalHealthTestResultAdmin)
+admin.site.register(ReportType, ReportTypeAdmin)
+admin.site.register(Report, ReportAdmin)

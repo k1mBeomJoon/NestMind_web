@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import QnAQuestion, QnAComment, FAQ, Inquiry, Notice, LoveTypeQuestion, LoveTypeTestResult, EmotionStyleQuestion, EmotionStyleTestResult, PersonalityQuestion, PersonalityTestResult, MentalHealthQuestion, MentalHealthTestResult
+from .models import QnAQuestion, QnAComment, FAQ, Inquiry, Notice, LoveTypeQuestion, LoveTypeTestResult, EmotionStyleQuestion, EmotionStyleTestResult, PersonalityQuestion, PersonalityTestResult, MentalHealthQuestion, MentalHealthTestResult, Report, ReportType
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.db.models import Max
+from django.http import HttpResponseForbidden
+
+# Report 모델이 있다고 가정하고 임시로 사용
+# from .models import Report
 
 def mainpage(request):
     return render(request, 'pages/mainpage.html')
@@ -141,8 +146,43 @@ def mental_health_test(request):
         return render(request, 'pages/test/mental_health_test_result.html', {'score': score})
     return render(request, 'pages/test/mental_health_test.html', {'questions': questions})
 
+@login_required(login_url='/accounts/login_real/')
 def create_report(request):
-    return render(request, 'pages/create_report.html')
+    user = request.user
+    love_type = LoveTypeTestResult.objects.filter(user=user).order_by('-created_at').first()
+    emotion_style = EmotionStyleTestResult.objects.filter(user=user).order_by('-created_at').first()
+    personality = PersonalityTestResult.objects.filter(user=user).order_by('-created_at').first()
+    mental_health = MentalHealthTestResult.objects.filter(user=user).order_by('-created_at').first()
+    success = False
+    if request.method == 'POST':
+        selected = request.POST.getlist('selected_tests')
+        if len(selected) == 4:
+            code_map = {}
+            if love_type and 'love_type' in selected:
+                code_map['love_type'] = 'R' if love_type.score >= 60 else 'A'
+            if emotion_style and 'emotion_style' in selected:
+                code_map['emotion_style'] = 'B' if emotion_style.score >= 60 else 'S'
+            if personality and 'personality' in selected:
+                code_map['personality'] = 'O' if personality.score >= 60 else 'C'
+            if mental_health and 'mental_health' in selected:
+                code_map['mental_health'] = 'I' if mental_health.score >= 60 else 'X'
+            type_code = (
+                code_map.get('love_type', '') +
+                code_map.get('emotion_style', '') +
+                code_map.get('personality', '') +
+                code_map.get('mental_health', '')
+            )
+            report_type = ReportType.objects.filter(type_code=type_code).first()
+            if report_type:
+                Report.objects.create(user=user, report_type=report_type)
+                success = True
+    return render(request, 'pages/test/create_report.html', {
+        'love_type': love_type,
+        'emotion_style': emotion_style,
+        'personality': personality,
+        'mental_health': mental_health,
+        'success': success,
+    })
 
 # 질문 / 답변
 
@@ -222,17 +262,58 @@ def notice(request):
     return render(request, 'pages/customerSupport/notice.html', {'notices': notices})
 
 # 마이 페이지
+@login_required(login_url='/accounts/login_real/')
 def test_history(request):
-    return render(request, 'pages/test_history.html')
+    user = request.user
+    love_type = LoveTypeTestResult.objects.filter(user=user).order_by('-created_at').first()
+    emotion_style = EmotionStyleTestResult.objects.filter(user=user).order_by('-created_at').first()
+    personality = PersonalityTestResult.objects.filter(user=user).order_by('-created_at').first()
+    mental_health = MentalHealthTestResult.objects.filter(user=user).order_by('-created_at').first()
+    return render(request, 'pages/mypage/test_history.html', {
+        'love_type': love_type,
+        'emotion_style': emotion_style,
+        'personality': personality,
+        'mental_health': mental_health,
+    })
 
+@login_required(login_url='/accounts/login_real/')
 def report_view(request):
-    return render(request, 'pages/report_view.html')
+    reports = Report.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'pages/mypage/report_view.html', {'reports': reports})
 
+@login_required(login_url='/accounts/login_real/')
+def report_detail(request, report_id):
+    report = get_object_or_404(Report, id=report_id)
+    if report.user != request.user:
+        return HttpResponseForbidden('이 리포트에 접근할 권한이 없습니다.')
+    return render(request, 'pages/report/report_detail.html', {'report': report})
+
+@login_required(login_url='/accounts/login_real/')
 def question_history(request):
-    return render(request, 'pages/question_history.html')
+    questions = QnAQuestion.objects.filter(author=request.user).order_by('-created_at')
+    return render(request, 'pages/mypage/question_history.html', {'questions': questions})
 
+@login_required(login_url='/accounts/login_real/')
 def inquiry_history(request):
-    return render(request, 'pages/inquiry_history.html')
+    inquiries = Inquiry.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'pages/mypage/inquiry_history.html', {'inquiries': inquiries})
 
+@login_required(login_url='/accounts/login_real/')
 def profile(request):
-    return render(request, 'pages/profile.html')
+    user = request.user
+    recent_love_type = LoveTypeTestResult.objects.filter(user=user).order_by('-created_at').first()
+    recent_emotion_style = EmotionStyleTestResult.objects.filter(user=user).order_by('-created_at').first()
+    recent_personality = PersonalityTestResult.objects.filter(user=user).order_by('-created_at').first()
+    recent_mental_health = MentalHealthTestResult.objects.filter(user=user).order_by('-created_at').first()
+    recent_report = user.reports.order_by('-created_at').first()
+    recent_report_type = recent_report.report_type.type_code if recent_report else None
+    recent_report_type_name = recent_report.report_type.type_name if recent_report else None
+    return render(request, 'pages/mypage/profile.html', {
+        'user': user,
+        'recent_love_type': recent_love_type,
+        'recent_emotion_style': recent_emotion_style,
+        'recent_personality': recent_personality,
+        'recent_mental_health': recent_mental_health,
+        'recent_report_type': recent_report_type,
+        'recent_report_type_name': recent_report_type_name,
+    })
