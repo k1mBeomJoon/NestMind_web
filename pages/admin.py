@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import QnAQuestion, QnAComment, FAQ, Notice, Inquiry
+from .models import QnAQuestion, QnAComment, FAQ, Notice, Inquiry, LoveTypeQuestion, LoveTypeTestResult, EmotionStyleQuestion, EmotionStyleTestResult, PersonalityQuestion, PersonalityTestResult, MentalHealthQuestion, MentalHealthTestResult
 
 class QnACommentInline(admin.TabularInline):
     model = QnAComment
@@ -59,3 +59,48 @@ class InquiryAdmin(admin.ModelAdmin):
     readonly_fields = ('content', 'answer')
 
 admin.site.register(Inquiry, InquiryAdmin)
+
+class LoveTypeQuestionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'text', 'created_at')
+    search_fields = ('text',)
+
+class LoveTypeTestResultAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'score', 'created_at', 'test_type')
+    list_filter = ('test_type', 'created_at')
+    search_fields = ('user__username',)
+
+class EmotionStyleQuestionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'text', 'created_at')
+    search_fields = ('text',)
+
+class EmotionStyleTestResultAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'score', 'created_at', 'test_type')
+    list_filter = ('test_type', 'created_at')
+    search_fields = ('user__username',)
+
+class PersonalityQuestionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'text', 'created_at')
+    search_fields = ('text',)
+
+class PersonalityTestResultAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'score', 'created_at', 'test_type')
+    list_filter = ('test_type', 'created_at')
+    search_fields = ('user__username',)
+
+class MentalHealthQuestionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'text', 'created_at')
+    search_fields = ('text',)
+
+class MentalHealthTestResultAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'score', 'created_at', 'test_type')
+    list_filter = ('test_type', 'created_at')
+    search_fields = ('user__username',)
+
+admin.site.register(LoveTypeQuestion, LoveTypeQuestionAdmin)
+admin.site.register(LoveTypeTestResult, LoveTypeTestResultAdmin)
+admin.site.register(EmotionStyleQuestion, EmotionStyleQuestionAdmin)
+admin.site.register(EmotionStyleTestResult, EmotionStyleTestResultAdmin)
+admin.site.register(PersonalityQuestion, PersonalityQuestionAdmin)
+admin.site.register(PersonalityTestResult, PersonalityTestResultAdmin)
+admin.site.register(MentalHealthQuestion, MentalHealthQuestionAdmin)
+admin.site.register(MentalHealthTestResult, MentalHealthTestResultAdmin)

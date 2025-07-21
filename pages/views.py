@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import QnAQuestion, QnAComment, FAQ, Inquiry, Notice
+from .models import QnAQuestion, QnAComment, FAQ, Inquiry, Notice, LoveTypeQuestion, LoveTypeTestResult, EmotionStyleQuestion, EmotionStyleTestResult, PersonalityQuestion, PersonalityTestResult, MentalHealthQuestion, MentalHealthTestResult
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -65,17 +65,81 @@ def sleep_appetite_management(request):
     return render(request, 'pages/manage/sleep_appetite_management.html')
 
 # 검사 / 리포트
+@login_required(login_url='/accounts/login_real/')
 def love_type_test(request):
-    return render(request, 'pages/love_type_test.html')
+    questions = LoveTypeQuestion.objects.all().order_by('id')[:20]
+    if request.method == 'POST':
+        answers = []
+        score = 0
+        for q in questions:
+            ans = int(request.POST.get(f'question_{q.id}', 0))
+            answers.append(ans)
+            score += ans
+        LoveTypeTestResult.objects.create(
+            user=request.user,
+            answers=answers,
+            score=score,
+            test_type='love_type',
+        )
+        return render(request, 'pages/test/love_type_test_result.html', {'score': score})
+    return render(request, 'pages/test/love_type_test.html', {'questions': questions})
 
+@login_required(login_url='/accounts/login_real/')
 def emotion_style_test(request):
-    return render(request, 'pages/emotion_style_test.html')
+    questions = EmotionStyleQuestion.objects.all().order_by('id')[:20]
+    if request.method == 'POST':
+        answers = []
+        score = 0
+        for q in questions:
+            ans = int(request.POST.get(f'question_{q.id}', 0))
+            answers.append(ans)
+            score += ans
+        EmotionStyleTestResult.objects.create(
+            user=request.user,
+            answers=answers,
+            score=score,
+            test_type='emotion_style',
+        )
+        return render(request, 'pages/test/emotion_style_test_result.html', {'score': score})
+    return render(request, 'pages/test/emotion_style_test.html', {'questions': questions})
 
+@login_required(login_url='/accounts/login_real/')
 def personality_test(request):
-    return render(request, 'pages/personality_test.html')
+    questions = PersonalityQuestion.objects.all().order_by('id')[:20]
+    if request.method == 'POST':
+        answers = []
+        score = 0
+        for q in questions:
+            ans = int(request.POST.get(f'question_{q.id}', 0))
+            answers.append(ans)
+            score += ans
+        PersonalityTestResult.objects.create(
+            user=request.user,
+            answers=answers,
+            score=score,
+            test_type='personality',
+        )
+        return render(request, 'pages/test/personality_test_result.html', {'score': score})
+    return render(request, 'pages/test/personality_test.html', {'questions': questions})
 
+@login_required(login_url='/accounts/login_real/')
 def mental_health_test(request):
-    return render(request, 'pages/mental_health_test.html')
+    questions = MentalHealthQuestion.objects.all().order_by('id')[:20]
+    if request.method == 'POST':
+        answers = []
+        score = 0
+        for q in questions:
+            ans = int(request.POST.get(f'question_{q.id}', 0))
+            answers.append(ans)
+            score += ans
+        MentalHealthTestResult.objects.create(
+            user=request.user,
+            answers=answers,
+            score=score,
+            test_type='mental_health',
+        )
+        return render(request, 'pages/test/mental_health_test_result.html', {'score': score})
+    return render(request, 'pages/test/mental_health_test.html', {'questions': questions})
 
 def create_report(request):
     return render(request, 'pages/create_report.html')
