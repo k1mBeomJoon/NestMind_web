@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label for="id_field">ID :</label>
                     <div class="input-with-button">
-                        <input type="text" id="id_field" name="username" placeholder="ID" required>
+                        <input type="text" id="id_field" name="username" placeholder="ID" required oninput="onIdInput()">
                         <button type="button" class="duplicate-check-btn" onclick="checkDuplicate('username', 'id_field')">중복검사</button>
                     </div>
                 </div>
@@ -70,8 +70,18 @@
                 <div class="form-group">
                     <label for="nickname_field">닉네임 :</label>
                     <div class="input-with-button">
-                        <input type="text" id="nickname_field" name="nickname" placeholder="닉네임" required>
+                        <input type="text" id="nickname_field" name="nickname" placeholder="닉네임" required maxlength="8" oninput="onNicknameInput()">
                         <button type="button" class="duplicate-check-btn" onclick="checkDuplicate('nickname', 'nickname_field')">중복검사</button>
+                    </div>
+                    <div class="password-requirements" id="nickname-requirements">
+                        <div class="password-requirement" id="nickname-length-check">
+                            <span class="requirement-icon">○</span>
+                            8자 이하
+                        </div>
+                        <div class="password-requirement" id="nickname-char-check">
+                            <span class="requirement-icon">○</span>
+                            한글/영문/숫자만 사용 가능
+                        </div>
                     </div>
                 </div>
                 
@@ -92,6 +102,8 @@ let duplicateCheckStatus = {
     username: false,
     nickname: false
 };
+
+let lastChecked = { username: '', nickname: '' };
 
 async function checkDuplicate(type, inputId) {
     const input = document.getElementById(inputId);
@@ -132,11 +144,13 @@ async function checkDuplicate(type, inputId) {
             // 성공 - 연두색
             button.classList.add('success');
             duplicateCheckStatus[type] = true;
+            lastChecked[type] = value;
             alert(data.message);
         } else {
             // 실패 - 붉은색
             button.classList.add('error');
             duplicateCheckStatus[type] = false;
+            lastChecked[type] = '';
             alert(data.message);
         }
         
@@ -222,6 +236,34 @@ function checkPasswordMatch() {
     }
 }
 
+function onNicknameInput() {
+    const input = document.getElementById('nickname_field');
+    const button = input.parentNode.querySelector('.duplicate-check-btn');
+    duplicateCheckStatus.nickname = false;
+    button.classList.remove('success', 'error');
+    button.textContent = '중복검사';
+    lastChecked.nickname = '';
+    // --- 실시간 조건 피드백 ---
+    const val = input.value;
+    const lengthCheck = document.getElementById('nickname-length-check');
+    const charCheck = document.getElementById('nickname-char-check');
+    const isLengthValid = val.length > 0 && val.length <= 8;
+    const isCharValid = /^[a-zA-Z0-9가-힣]+$/.test(val);
+    lengthCheck.className = `password-requirement ${isLengthValid ? 'valid' : 'invalid'}`;
+    lengthCheck.querySelector('.requirement-icon').textContent = isLengthValid ? '✓' : '○';
+    charCheck.className = `password-requirement ${isCharValid ? 'valid' : 'invalid'}`;
+    charCheck.querySelector('.requirement-icon').textContent = isCharValid ? '✓' : '○';
+}
+
+function onIdInput() {
+    const input = document.getElementById('id_field');
+    const button = input.parentNode.querySelector('.duplicate-check-btn');
+    duplicateCheckStatus.username = false;
+    button.classList.remove('success', 'error');
+    button.textContent = '중복검사';
+    lastChecked.username = '';
+}
+
 function validateAndSubmit() {
     // 모든 필드 값 가져오기
     const username = document.getElementById('id_field').value.trim();
@@ -244,12 +286,12 @@ function validateAndSubmit() {
     }
     
     // 3. 중복검사 검증
-    if (!duplicateCheckStatus.username) {
+    if (!duplicateCheckStatus.username || lastChecked.username !== username) {
         alert('ID 중복검사를 완료해주세요.');
         return;
     }
     
-    if (!duplicateCheckStatus.nickname) {
+    if (!duplicateCheckStatus.nickname || lastChecked.nickname !== nickname) {
         alert('닉네임 중복검사를 완료해주세요.');
         return;
     }

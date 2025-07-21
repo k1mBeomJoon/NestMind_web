@@ -35,6 +35,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% if not love_type and not personality and not emotion_style and not mental_health %}
+                            <tr>
+                                <td colspan="3" style="text-align:center; color:#888; padding:40px 0; font-size:1.1rem;">아직 검사 내역이 없습니다.</td>
+                            </tr>
+                            {% endif %}
                             {% if love_type %}
                             <tr>
                                 <td class="col-title">연애유형 검사</td>

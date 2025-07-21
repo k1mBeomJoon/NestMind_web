@@ -32,9 +32,19 @@
                         <div style="font-size:1.35rem; font-weight:700; color:#222; margin-bottom:2px;">
                             <span id="nickname-display">{{ user.first_name|default:user.username }}</span>
                             <span id="nickname-edit-area" style="display:none;">
-                                <input type="text" id="nickname-input" value="{{ user.first_name|default:user.username }}" maxlength="20" style="width:160px;">
+                                <input type="text" id="nickname-input" value="{{ user.first_name|default:user.username }}" maxlength="8" style="width:160px;" oninput="onProfileNicknameInput()">
                                 <button id="nickname-check-btn" class="btn btn-outline-secondary btn-sm">중복검사</button>
                                 <button id="nickname-save-btn" class="btn btn-primary btn-sm" style="display:none;">완료</button>
+                                <div class="password-requirements" id="profile-nickname-requirements" style="margin-top:2px;">
+                                    <div class="password-requirement" id="profile-nickname-length-check">
+                                        <span class="requirement-icon">○</span>
+                                        8자 이하
+                                    </div>
+                                    <div class="password-requirement" id="profile-nickname-char-check">
+                                        <span class="requirement-icon">○</span>
+                                        한글/영문/숫자만 사용 가능
+                                    </div>
+                                </div>
                             </span>
                         </div>
                         <div style="font-size:1.05rem; color:#888;">아이디: {{ user.username }}</div>
@@ -248,5 +258,21 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+function onProfileNicknameInput() {
+    nicknameChecked = false;
+    nicknameSaveBtn.style.display = 'none';
+    nicknameCheckBtn.classList.remove('success', 'error');
+    // --- 실시간 조건 피드백 ---
+    const val = document.getElementById('nickname-input').value;
+    const lengthCheck = document.getElementById('profile-nickname-length-check');
+    const charCheck = document.getElementById('profile-nickname-char-check');
+    const isLengthValid = val.length > 0 && val.length <= 8;
+    const isCharValid = /^[a-zA-Z0-9가-힣]+$/.test(val);
+    lengthCheck.className = `password-requirement ${isLengthValid ? 'valid' : 'invalid'}`;
+    lengthCheck.querySelector('.requirement-icon').textContent = isLengthValid ? '✓' : '○';
+    charCheck.className = `password-requirement ${isCharValid ? 'valid' : 'invalid'}`;
+    charCheck.querySelector('.requirement-icon').textContent = isCharValid ? '✓' : '○';
+}
+document.getElementById('nickname-input').addEventListener('input', onProfileNicknameInput);
 </script>
 {% endblock %} 
