@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import QnAQuestion, QnAComment
+from .models import QnAQuestion, QnAComment, FAQ, Inquiry, Notice
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 def mainpage(request):
     return render(request, 'pages/mainpage.html')
@@ -132,13 +133,29 @@ def company_history(request):
 
 # 고객지원
 def faq(request):
-    return render(request, 'pages/faq.html')
+    faqs = FAQ.objects.all().order_by('-created_at')
+    return render(request, 'pages/customerSupport/faq.html', {'faqs': faqs})
 
+@login_required(login_url='/accounts/login_real/')
 def one_on_one_inquiry(request):
-    return render(request, 'pages/one_on_one_inquiry.html')
+    if request.method == 'POST':
+        category = request.POST.get('category')
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        Inquiry.objects.create(
+            user=request.user,
+            category=category,
+            title=title,
+            content=content
+        )
+        messages.success(request, '문의가 정상적으로 등록되었습니다.')
+        return redirect('pages:one_on_one_inquiry')
+    categories = Inquiry.CATEGORY_CHOICES
+    return render(request, 'pages/customerSupport/one_on_one_inquiry.html', {'categories': categories})
 
 def notice(request):
-    return render(request, 'pages/notice.html')
+    notices = Notice.objects.all().order_by('-created_at')
+    return render(request, 'pages/customerSupport/notice.html', {'notices': notices})
 
 # 마이 페이지
 def test_history(request):

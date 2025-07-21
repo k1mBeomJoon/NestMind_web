@@ -28,3 +28,38 @@ class QnAComment(models.Model):
 
     def __str__(self):
         return f"{self.author.first_name}: {self.content[:20]}"
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=300)
+    answer = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.question
+
+class Notice(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+class Inquiry(models.Model):
+    CATEGORY_CHOICES = [
+        ('operation', '운영 관련'),
+        ('privacy', '개인정보 관련'),
+        ('report', '신고 관련'),
+        ('other', '기타 문의'),
+    ]
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='inquiries')
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    answer = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"[{self.get_category_display()}] {self.title} - {self.user.username}"

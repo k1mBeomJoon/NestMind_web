@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">&gt;</span>
+            <span>고객지원</span>
+            <span class="separator">&gt;</span>
+            <span>FAQ</span>
+        </div>
+        <h1 class="page-title">자주 묻는 질문 (FAQ)</h1>
+    </div>
+    <div class="detail-page-content">
+        <div class="sidebar">
+            <h3 class="sidebar-title">고객지원</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:faq' %}" class="active">FAQ</a></li>
+                <li><a href="{% url 'pages:one_on_one_inquiry' %}">1:1 문의</a></li>
+                <li><a href="{% url 'pages:notice' %}">공지사항</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="board-container">
+                <h2 class="board-title">FAQ 목록</h2>
+                <div class="board-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="col-no">No</th>
+                                <th class="col-title">질문</th>
+                                <th class="col-author">글쓴이</th>
+                                <th class="col-date">등록일</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for faq in faqs %}
+                            <tr class="faq-row" data-faq-id="{{ faq.id }}">
+                                <td>{{ forloop.counter }}</td>
+                                <td style="text-align:left; cursor:pointer;">{{ faq.question }}</td>
+                                <td>운영자</td>
+                                <td>{{ faq.created_at|date:'Y-m-d' }}</td>
+                            </tr>
+                            <tr class="faq-answer-row" id="faq-answer-{{ faq.id }}" style="display:none; background:#f8f9fa;">
+                                <td colspan="4" style="text-align:left; padding: 18px 32px; color:#333;">{{ faq.answer }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr><td colspan="4">등록된 FAQ가 없습니다.</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 페이지네이션 -->
+                <div class="pagination">
+                    <a href="#" class="page-link">이전 페이지 &lt;-</a>
+                    <a href="#" class="page-link">-&gt; 다음 페이지</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+.board-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.board-title {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.board-table {
+    overflow-x: auto;
+}
+
+.board-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.board-table th {
+    background: #f8f9fa;
+    padding: 15px 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.board-table td {
+    padding: 15px 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.board-table tr:hover {
+    background: #f8f9fa;
+}
+
+.board-table a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.board-table a:hover {
+    color: #007bff;
+}
+
+.col-no {
+    width: 80px;
+}
+
+.col-title {
+    text-align: left;
+}
+
+.col-author {
+    width: 120px;
+}
+
+.col-date {
+    width: 120px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+.page-link {
+    color: #007bff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.page-link:hover {
+    background: #007bff;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .board-table {
+        font-size: 14px;
+    }
+    .col-author, .col-date {
+        display: none;
+    }
+    .pagination {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.faq-row').forEach(function(row) {
+        row.addEventListener('click', function() {
+            var id = this.getAttribute('data-faq-id');
+            var answerRow = document.getElementById('faq-answer-' + id);
+            if (answerRow.style.display === 'none') {
+                answerRow.style.display = '';
+            } else {
+                answerRow.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

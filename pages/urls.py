@@ -46,7 +46,7 @@ urlpatterns = [
     path('company-history/', views.company_history, name='company_history'),
     
     # 고객지원
-    path('faq/', views.faq, name='faq'),
+    path('customer-support/faq/', views.faq, name='faq'),
     path('one-on-one-inquiry/', views.one_on_one_inquiry, name='one_on_one_inquiry'),
     path('notice/', views.notice, name='notice'),
     

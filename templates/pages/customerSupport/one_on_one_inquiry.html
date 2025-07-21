@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">&gt;</span>
+            <span>고객지원</span>
+            <span class="separator">&gt;</span>
+            <span>1:1 문의</span>
+        </div>
+        <h1 class="page-title">1:1 문의</h1>
+    </div>
+    <div class="detail-page-content">
+        <div class="sidebar">
+            <h3 class="sidebar-title">고객지원</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:faq' %}">FAQ</a></li>
+                <li><a href="{% url 'pages:one_on_one_inquiry' %}" class="active">1:1 문의</a></li>
+                <li><a href="{% url 'pages:notice' %}">공지사항</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="board-container" style="max-width:600px; margin:0 auto;">
+                <h2 class="board-title">1:1 문의 작성</h2>
+                <form method="post" style="padding: 30px 20px;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="category" class="form-label">카테고리</label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="" disabled selected>카테고리를 선택하세요</option>
+                            {% for value, label in categories %}
+                                <option value="{{ value }}">{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">제목</label>
+                        <input type="text" class="form-control" id="title" name="title" maxlength="200" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">문의 내용</label>
+                        <textarea class="form-control" id="content" name="content" rows="7" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%; font-size:1.1rem;">문의 등록</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

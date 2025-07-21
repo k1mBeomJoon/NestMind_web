@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">&gt;</span>
+            <span>고객지원</span>
+            <span class="separator">&gt;</span>
+            <span>공지사항</span>
+        </div>
+        <h1 class="page-title">공지사항</h1>
+    </div>
+    <div class="detail-page-content">
+        <div class="sidebar">
+            <h3 class="sidebar-title">고객지원</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'pages:faq' %}">FAQ</a></li>
+                <li><a href="{% url 'pages:one_on_one_inquiry' %}">1:1 문의</a></li>
+                <li><a href="{% url 'pages:notice' %}" class="active">공지사항</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="board-container">
+                <h2 class="board-title">공지사항 목록</h2>
+                <div class="board-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="col-no">No</th>
+                                <th class="col-title">제목</th>
+                                <th class="col-date">등록일</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for notice in notices %}
+                            <tr class="notice-row" data-notice-id="{{ notice.id }}">
+                                <td>{{ forloop.counter }}</td>
+                                <td style="text-align:left; cursor:pointer;">{{ notice.title }}</td>
+                                <td>{{ notice.created_at|date:'Y-m-d' }}</td>
+                            </tr>
+                            <tr class="notice-content-row" id="notice-content-{{ notice.id }}" style="display:none; background:#f8f9fa;">
+                                <td colspan="3" style="text-align:left; padding: 18px 32px; color:#333;">{{ notice.content|linebreaksbr }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr><td colspan="3">등록된 공지사항이 없습니다.</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 페이지네이션 -->
+                <div class="pagination">
+                    <a href="#" class="page-link">이전 페이지 &lt;-</a>
+                    <a href="#" class="page-link">-&gt; 다음 페이지</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+.board-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.board-title {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.board-table {
+    overflow-x: auto;
+}
+
+.board-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.board-table th {
+    background: #f8f9fa;
+    padding: 15px 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.board-table td {
+    padding: 15px 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.board-table tr:hover {
+    background: #f8f9fa;
+}
+
+.board-table a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.board-table a:hover {
+    color: #007bff;
+}
+
+.col-no {
+    width: 80px;
+}
+
+.col-title {
+    text-align: left;
+}
+
+.col-date {
+    width: 120px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+.page-link {
+    color: #007bff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.page-link:hover {
+    background: #007bff;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .board-table {
+        font-size: 14px;
+    }
+    .col-date {
+        display: none;
+    }
+    .pagination {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.notice-row').forEach(function(row) {
+        row.addEventListener('click', function() {
+            var id = this.getAttribute('data-notice-id');
+            var contentRow = document.getElementById('notice-content-' + id);
+            if (contentRow.style.display === 'none') {
+                contentRow.style.display = '';
+            } else {
+                contentRow.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import QnAQuestion, QnAComment
+from .models import QnAQuestion, QnAComment, FAQ, Notice, Inquiry
 
 class QnACommentInline(admin.TabularInline):
     model = QnAComment
@@ -48,3 +48,14 @@ class QnACommentAdmin(admin.ModelAdmin):
     def short_content(self, obj):
         return obj.content[:30] + ('...' if len(obj.content) > 30 else '')
     short_content.short_description = '댓글 미리보기'
+
+admin.site.register(FAQ)
+admin.site.register(Notice)
+
+class InquiryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'category', 'title', 'created_at', 'answer')
+    list_filter = ('category', 'created_at')
+    search_fields = ('title', 'content', 'user__username')
+    readonly_fields = ('content', 'answer')
+
+admin.site.register(Inquiry, InquiryAdmin)
