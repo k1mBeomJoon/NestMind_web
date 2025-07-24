@@ -30,17 +30,8 @@ urlpatterns = [
     path('sleep-appetite-management/', views.sleep_appetite_management, name='sleep_appetite_management'),
     
     # 검사 / 리포트
-    path('love-type-test/', views.love_type_test, name='love_type_test'),
-    path('emotion-style-test/', views.emotion_style_test, name='emotion_style_test'),
-    path('personality-test/', views.personality_test, name='personality_test'),
-    path('mental-health-test/', views.mental_health_test, name='mental_health_test'),
-    path('create-report/', views.create_report, name='create_report'),
-    path('report/<int:report_id>/', views.report_detail, name='report_detail'),
     
     # 질문 / 답변
-    path('ask-question/', views.ask_question, name='ask_question'),
-    path('answer-question/', views.answer_question, name='answer_question'),
-    path('question-detail/<int:question_id>/', views.question_detail, name='question_detail'),
     
     # ABOUT US
     path('nestmind/', views.nestmind, name='nestmind'),
@@ -48,13 +39,8 @@ urlpatterns = [
     
     # 고객지원
     path('customer-support/faq/', views.faq, name='faq'),
-    path('one-on-one-inquiry/', views.one_on_one_inquiry, name='one_on_one_inquiry'),
     path('notice/', views.notice, name='notice'),
     
     # 마이 페이지
-    path('test-history/', views.test_history, name='test_history'),
-    path('report-view/', views.report_view, name='report_view'),
-    path('question-history/', views.question_history, name='question_history'),
-    path('inquiry-history/', views.inquiry_history, name='inquiry_history'),
     path('profile/', views.profile, name='profile'),
 ]

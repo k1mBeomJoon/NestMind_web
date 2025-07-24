@@ -15,10 +15,10 @@
         <div class="sidebar">
             <h3 class="sidebar-title">마이페이지</h3>
             <ul class="sidebar-menu">
-                <li><a href="{% url 'pages:test_history' %}">테스트 / 검사 내역</a></li>
-                <li><a href="{% url 'pages:report_view' %}">리포트 조회</a></li>
-                <li><a href="{% url 'pages:question_history' %}">질문 내역</a></li>
-                <li><a href="{% url 'pages:inquiry_history' %}">1:1 문의 내역</a></li>
+                <li><a href="{% url 'exam:test_history' %}">테스트 / 검사 내역</a></li>
+                <li><a href="{% url 'report:report_view' %}">리포트 조회</a></li>
+                <li><a href="{% url 'qna:question_history' %}">질문 내역</a></li>
+                <li><a href="{% url 'inquiry:inquiry_history' %}">1:1 문의 내역</a></li>
                 <li><a href="{% url 'pages:profile' %}" class="active">프로필</a></li>
             </ul>
         </div>
@@ -26,13 +26,13 @@
             <div class="profile-container" style="max-width:480px; margin:0 auto; background:white; border-radius:18px; box-shadow:0 4px 24px rgba(37,131,230,0.10); padding:44px 36px 36px 36px; position:relative;">
                 <div style="display:flex; align-items:center; gap:18px; margin-bottom:28px;">
                     <div style="width:56px; height:56px; border-radius:50%; background:#eaf3fc; display:flex; align-items:center; justify-content:center; font-size:2.1rem; color:#2583e6; font-weight:bold; box-shadow:0 2px 8px rgba(37,131,230,0.08);">
-                        <span>{{ user.first_name|default:user.username|slice:":1"|upper }}</span>
+                        <span>{{ user.profile.nickname|default:user.username|slice:':1'|upper }}</span>
                     </div>
                     <div>
                         <div style="font-size:1.35rem; font-weight:700; color:#222; margin-bottom:2px;">
-                            <span id="nickname-display">{{ user.first_name|default:user.username }}</span>
+                            <span id="nickname-display">{{ user.profile.nickname|default:user.username }}</span>
                             <span id="nickname-edit-area" style="display:none;">
-                                <input type="text" id="nickname-input" value="{{ user.first_name|default:user.username }}" maxlength="8" style="width:160px;" oninput="onProfileNicknameInput()">
+                                <input type="text" id="nickname-input" value="{{ user.profile.nickname|default:user.username }}" maxlength="8" style="width:160px;" oninput="onProfileNicknameInput()">
                                 <button id="nickname-check-btn" class="btn btn-outline-secondary btn-sm">중복검사</button>
                                 <button id="nickname-save-btn" class="btn btn-primary btn-sm" style="display:none;">완료</button>
                                 <div class="password-requirements" id="profile-nickname-requirements" style="margin-top:2px;">

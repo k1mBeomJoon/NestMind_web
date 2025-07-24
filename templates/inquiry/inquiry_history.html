@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="detail-page-container">
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">&gt;</span>
+            <span>마이페이지</span>
+            <span class="separator">&gt;</span>
+            <span>1:1 문의 내역</span>
+        </div>
+        <h1 class="page-title">1:1 문의 내역</h1>
+    </div>
+    <div class="detail-page-content">
+        <div class="sidebar">
+            <h3 class="sidebar-title">마이페이지</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'exam:test_history' %}">테스트 / 검사 내역</a></li>
+                <li><a href="{% url 'report:report_view' %}">리포트 조회</a></li>
+                <li><a href="{% url 'qna:question_history' %}">질문 내역</a></li>
+                <li><a href="{% url 'inquiry:one_on_one_inquiry' %}">1:1 문의하기</a></li>
+                <li><a href="{% url 'pages:profile' %}">프로필</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="board-container">
+                <h2 class="board-title">내가 작성한 1:1 문의</h2>
+                <div class="board-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>제목</th>
+                                <th>작성일</th>
+                                <th>상세보기</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for inquiry in inquiries %}
+                            <tr class="inquiry-row" data-inquiry-id="{{ inquiry.id }}">
+                                <td>{{ inquiry.title }}</td>
+                                <td>{{ inquiry.created_at|date:'Y-m-d' }}</td>
+                                <td>
+                                    {% if inquiry.answer %}
+                                        <button class="btn btn-outline-success btn-sm answer-toggle" data-inquiry-id="{{ inquiry.id }}">답변 완료</button>
+                                        <button class="btn btn-outline-primary btn-sm answer-view" data-inquiry-id="{{ inquiry.id }}">답변 보기</button>
+                                    {% else %}
+                                        <span class="btn btn-outline-secondary btn-sm">미답변</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% if inquiry.answer %}
+                            <tr class="inquiry-answer-row" id="inquiry-answer-{{ inquiry.id }}" style="display:none; background:#f8f9fa;">
+                                <td colspan="3" style="text-align:left; padding: 18px 32px; color:#333;">{{ inquiry.answer|linebreaksbr }}</td>
+                            </tr>
+                            {% endif %}
+                            {% empty %}
+                            <tr><td colspan="3">작성한 1:1 문의가 없습니다.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+.board-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+.board-title {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+.board-table {
+    overflow-x: auto;
+}
+.board-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.board-table th {
+    background: #f8f9fa;
+    padding: 15px 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #dee2e6;
+}
+.board-table td {
+    padding: 15px 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+.board-table tr:hover {
+    background: #f8f9fa;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.answer-view').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var id = this.getAttribute('data-inquiry-id');
+            var answerRow = document.getElementById('inquiry-answer-' + id);
+            if (answerRow.style.display === 'none') {
+                answerRow.style.display = '';
+                this.textContent = '답변 닫기';
+            } else {
+                answerRow.style.display = 'none';
+                this.textContent = '답변 보기';
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

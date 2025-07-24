@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pages',
     'accounts.apps.AccountsConfig',
+    'qna',
+    'exam',
+    'report',
+    'inquiry',
 ]
 
 MIDDLEWARE = [

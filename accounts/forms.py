@@ -32,7 +32,12 @@ class SignupForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.first_name = self.cleaned_data['nickname']  # nickname을 first_name에 저장
         if commit:
             user.save()
+            # Profile이 없으면 생성, 있으면 update
+            from accounts.models import Profile
+            nickname = self.cleaned_data['nickname']
+            profile, created = Profile.objects.get_or_create(user=user)
+            profile.nickname = nickname
+            profile.save()
         return user

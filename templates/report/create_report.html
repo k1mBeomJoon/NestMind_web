@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-page-container">
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">&gt;</span>
+            <span>검사/리포트</span>
+            <span class="separator">&gt;</span>
+            <span>리포트 생성하기</span>
+        </div>
+        <h1 class="page-title">리포트 생성하기</h1>
+    </div>
+    <div class="detail-page-content">
+        <div class="sidebar">
+            <h3 class="sidebar-title">검사/리포트</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'exam:love_type_test' %}">연애유형 검사</a></li>
+                <li><a href="{% url 'exam:emotion_style_test' %}">감정 표현 스타일 검사</a></li>
+                <li><a href="{% url 'exam:personality_test' %}">성향 유형 검사</a></li>
+                <li><a href="{% url 'exam:mental_health_test' %}">정신 건강 검사</a></li>
+                <li><a href="{% url 'report:create_report' %}" class="active">리포트 생성하기</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="board-container" style="padding: 32px 24px;">
+                <div style="font-size: 1.1rem; font-weight: bold; color: #222; margin-bottom: 18px;">
+                    <span style="color: #d32f2f;">*</span> 검사 내역 중 원하는 검사 4가지(각 검사 별 1개)를 선택하여 생성 버튼을 클릭해주세요 !
+                </div>
+                <form method="post" id="report-form">
+                    {% csrf_token %}
+                    <table class="report-table" style="width:100%; border-collapse:collapse; margin-bottom: 24px;">
+                        <thead>
+                            <tr style="background:#f8f9fa;">
+                                <th style="width:60px;">선택</th>
+                                <th>검사 종류</th>
+                                <th>검사 결과</th>
+                                <th>검사 시간</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if love_type %}
+                            <tr>
+                                <td><input type="checkbox" name="selected_tests" value="love_type"></td>
+                                <td>연애유형 검사</td>
+                                <td>{{ love_type.score }}점</td>
+                                <td>{{ love_type.created_at|date:'Y-m-d' }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if personality %}
+                            <tr>
+                                <td><input type="checkbox" name="selected_tests" value="personality"></td>
+                                <td>성향 유형 검사</td>
+                                <td>{{ personality.score }}점</td>
+                                <td>{{ personality.created_at|date:'Y-m-d' }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if emotion_style %}
+                            <tr>
+                                <td><input type="checkbox" name="selected_tests" value="emotion_style"></td>
+                                <td>감정 표현 스타일 검사</td>
+                                <td>{{ emotion_style.score }}점</td>
+                                <td>{{ emotion_style.created_at|date:'Y-m-d' }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if mental_health %}
+                            <tr>
+                                <td><input type="checkbox" name="selected_tests" value="mental_health"></td>
+                                <td>정신 건강 검사</td>
+                                <td>{{ mental_health.score }}점</td>
+                                <td>{{ mental_health.created_at|date:'Y-m-d' }}</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    <div style="text-align:center;">
+                        <button type="submit" id="create-report-btn" class="btn btn-outline-primary" style="font-size:1.1rem; width:220px; height:44px; background:white; color:#007bff; border:1px solid #007bff;" disabled>리포트 생성하기</button>
+                    </div>
+                </form>
+                <script>
+                // 최대 4개만 선택, 4개 선택 시 버튼 파란색 활성화, 선택 취소 가능
+                const checkboxes = document.querySelectorAll('input[name="selected_tests"]');
+                const btn = document.getElementById('create-report-btn');
+                function updateButtonState() {
+                    const checked = document.querySelectorAll('input[name="selected_tests"]:checked').length;
+                    if (checked === 4) {
+                        btn.disabled = false;
+                        btn.style.background = '#007bff';
+                        btn.style.color = 'white';
+                        btn.classList.remove('btn-outline-primary');
+                        btn.classList.add('btn-primary');
+                    } else {
+                        btn.disabled = true;
+                        btn.style.background = 'white';
+                        btn.style.color = '#007bff';
+                        btn.classList.remove('btn-primary');
+                        btn.classList.add('btn-outline-primary');
+                    }
+                }
+                checkboxes.forEach(cb => {
+                    cb.addEventListener('change', updateButtonState);
+                });
+                updateButtonState();
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+{% if success %}
+<div id="report-success-modal" style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.25); z-index:9999; display:flex; align-items:center; justify-content:center;">
+    <div style="background:white; border-radius:12px; box-shadow:0 2px 16px rgba(0,0,0,0.18); padding:40px 32px; text-align:center; min-width:320px;">
+        <div style="font-size:1.2rem; color:#222; margin-bottom:24px;">리포트 생성이 완료되었습니다.<br>마이페이지의 <b>'리포트 조회'</b>에서 확인해주세요.</div>
+        <button id="report-success-ok" class="btn btn-primary" style="width:120px; font-size:1.1rem;">OK</button>
+    </div>
+</div>
+{% endif %}
+<style>
+.report-table th, .report-table td {
+    text-align: center;
+    padding: 12px 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.report-table tr:last-child td {
+    border-bottom: none;
+}
+.report-table input[type="radio"] {
+    width: 18px;
+    height: 18px;
+}
+</style>
+<script>
+{% if success %}
+document.getElementById('report-success-ok').onclick = function() {
+    window.location.href = '{% url 'exam:create_report' %}';
+};
+{% endif %}
+</script>
+{% endblock %} 

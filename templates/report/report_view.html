@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="detail-page-container">
+    <div class="detail-page-header">
+        <div class="breadcrumb" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+            <span>홈</span>
+            <span class="separator">&gt;</span>
+            <span>마이페이지</span>
+            <span class="separator">&gt;</span>
+            <span>리포트 조회</span>
+        </div>
+        <h1 class="page-title">리포트 조회</h1>
+    </div>
+    <div class="detail-page-content">
+        <div class="sidebar">
+            <h3 class="sidebar-title">마이페이지</h3>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'exam:test_history' %}">테스트 / 검사 내역</a></li>
+                <li><a href="{% url 'report:report_view' %}" class="active">리포트 조회</a></li>
+                <li><a href="{% url 'qna:question_history' %}">질문 내역</a></li>
+                <li><a href="{% url 'inquiry:inquiry_history' %}">1:1 문의 내역</a></li>
+                <li><a href="{% url 'pages:profile' %}">프로필</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="board-container">
+                <h2 class="board-title">리포트 내역</h2>
+                <div class="board-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>생성일</th>
+                                <th>리포트명</th>
+                                <th>리포트 조회</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for report in reports %}
+                            <tr>
+                                <td>{{ report.created_at|date:'Y-m-d' }}</td>
+                                <td>{{ report.report_type.type_code }} : {{ report.report_type.type_name }}</td>
+                                <td><a href="{% url 'report:report_detail' report_id=report.id %}" class="btn btn-outline-primary btn-sm">조회하기</a></td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="3">생성된 리포트가 없습니다.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+.board-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+.board-title {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+.board-table {
+    overflow-x: auto;
+}
+.board-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.board-table th {
+    background: #f8f9fa;
+    padding: 15px 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #dee2e6;
+}
+.board-table td {
+    padding: 15px 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+.board-table tr:hover {
+    background: #f8f9fa;
+}
+</style>
+{% endblock %} 

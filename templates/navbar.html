@@ -39,19 +39,19 @@
                     <span class="menu-label">검사 / 리포트</span>
                     <div class="menu-dot"></div>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'pages:love_type_test' %}" style="color: inherit; text-decoration: none;">연애유형 검사</a></li>
-                        <li><a href="{% url 'pages:emotion_style_test' %}" style="color: inherit; text-decoration: none;">감정 표현 스타일 검사</a></li>
-                        <li><a href="{% url 'pages:personality_test' %}" style="color: inherit; text-decoration: none;">성향 유형 검사</a></li>
-                        <li><a href="{% url 'pages:mental_health_test' %}" style="color: inherit; text-decoration: none;">정신 건강 검사</a></li>
-                        <li><a href="{% url 'pages:create_report' %}" style="color: inherit; text-decoration: none;">리포트 생성하기</a></li>
+                        <li><a href="{% url 'exam:love_type_test' %}" style="color: inherit; text-decoration: none;">연애유형 검사</a></li>
+                        <li><a href="{% url 'exam:emotion_style_test' %}" style="color: inherit; text-decoration: none;">감정 표현 스타일 검사</a></li>
+                        <li><a href="{% url 'exam:personality_test' %}" style="color: inherit; text-decoration: none;">성향 유형 검사</a></li>
+                        <li><a href="{% url 'exam:mental_health_test' %}" style="color: inherit; text-decoration: none;">정신 건강 검사</a></li>
+                        <li><a href="{% url 'report:create_report' %}" style="color: inherit; text-decoration: none;">리포트 생성하기</a></li>
                     </ul>
                 </li>
                 <li class="has-dropdown">
                     <span class="menu-label">질문 / 답변</span>
                     <div class="menu-dot"></div>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'pages:ask_question' %}" style="color: inherit; text-decoration: none;">모두에게 질문하기</a></li>
-                        <li><a href="{% url 'pages:answer_question' %}" style="color: inherit; text-decoration: none;">모두에게 답변하기</a></li>
+                        <li><a href="{% url 'qna:ask_question' %}" style="color: inherit; text-decoration: none;">모두에게 질문하기</a></li>
+                        <li><a href="{% url 'qna:answer_question' %}" style="color: inherit; text-decoration: none;">모두에게 답변하기</a></li>
                     </ul>
                 </li>
                 <li class="has-dropdown">
@@ -67,7 +67,7 @@
                     <div class="menu-dot"></div>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'pages:faq' %}" style="color: inherit; text-decoration: none;">FAQ (자주 묻는 질문)</a></li>
-                        <li><a href="{% url 'pages:one_on_one_inquiry' %}" style="color: inherit; text-decoration: none;">1 : 1 문의</a></li>
+                        <li><a href="{% url 'inquiry:one_on_one_inquiry' %}" style="color: inherit; text-decoration: none;">1 : 1 문의</a></li>
                         <li><a href="{% url 'pages:notice' %}" style="color: inherit; text-decoration: none;">공지사항</a></li>
                     </ul>
                 </li>
@@ -82,10 +82,10 @@
                     <span class="menu-label">마이 페이지</span>
                     <div class="menu-dot"></div>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'pages:test_history' %}" style="color: inherit; text-decoration: none;">테스트 / 검사 내역</a></li>
-                        <li><a href="{% url 'pages:report_view' %}" style="color: inherit; text-decoration: none;">리포트 조회</a></li>
-                        <li><a href="{% url 'pages:question_history' %}" style="color: inherit; text-decoration: none;">질문 내역</a></li>
-                        <li><a href="{% url 'pages:inquiry_history' %}" style="color: inherit; text-decoration: none;">1 : 1 문의 내역</a></li>
+                        <li><a href="{% url 'exam:test_history' %}" style="color: inherit; text-decoration: none;">테스트 / 검사 내역</a></li>
+                        <li><a href="{% url 'report:report_view' %}" style="color: inherit; text-decoration: none;">리포트 조회</a></li>
+                        <li><a href="{% url 'qna:question_history' %}" style="color: inherit; text-decoration: none;">질문 내역</a></li>
+                        <li><a href="{% url 'inquiry:inquiry_history' %}" style="color: inherit; text-decoration: none;">1 : 1 문의 내역</a></li>
                         <li><a href="{% url 'pages:profile' %}" style="color: inherit; text-decoration: none;">프로필</a></li>
                     </ul>
                 </div>
@@ -96,10 +96,10 @@
                     <span class="menu-label">마이 페이지</span>
                     <div class="menu-dot"></div>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'pages:test_history' %}" style="color: inherit; text-decoration: none;">테스트 / 검사 내역</a></li>
-                        <li><a href="{% url 'pages:report_view' %}" style="color: inherit; text-decoration: none;">리포트 조회</a></li>
-                        <li><a href="{% url 'pages:question_history' %}" style="color: inherit; text-decoration: none;">질문 내역</a></li>
-                        <li><a href="{% url 'pages:inquiry_history' %}" style="color: inherit; text-decoration: none;">1 : 1 문의 내역</a></li>
+                        <li><a href="{% url 'exam:test_history' %}" style="color: inherit; text-decoration: none;">테스트 / 검사 내역</a></li>
+                        <li><a href="{% url 'report:report_view' %}" style="color: inherit; text-decoration: none;">리포트 조회</a></li>
+                        <li><a href="{% url 'qna:question_history' %}" style="color: inherit; text-decoration: none;">질문 내역</a></li>
+                        <li><a href="{% url 'inquiry:inquiry_history' %}" style="color: inherit; text-decoration: none;">1 : 1 문의 내역</a></li>
                         <li><a href="{% url 'pages:profile' %}" style="color: inherit; text-decoration: none;">프로필</a></li>
                     </ul>
                 </div>

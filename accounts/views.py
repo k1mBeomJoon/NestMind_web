@@ -15,7 +15,13 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # 회원가입 성공 후 login_real 페이지로 리다이렉트
+            # 닉네임 중복 최종 확인
+            from accounts.models import Profile
+            nickname = form.cleaned_data['nickname']
+            if Profile.objects.filter(nickname=nickname).exclude(user=user).exists():
+                user.delete()  # 회원가입 취소
+                messages.error(request, '이미 사용 중인 닉네임입니다. 다른 닉네임을 입력해주세요.')
+                return redirect('accounts:signup')
             messages.success(request, '회원가입이 완료되었습니다! 로그인해주세요.')
             return redirect('accounts:login_real')
         else:
@@ -42,7 +48,8 @@ def login_real(request: HttpRequest):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, f'{user.first_name or user.username}님, 환영합니다!')
+                # 로그인 환영 메시지
+                messages.success(request, f'{user.profile.nickname or user.username}님, 환영합니다!')
                 return redirect('/')  # 메인 페이지로 리다이렉트
             else:
                 messages.error(request, 'ID 또는 비밀번호가 올바르지 않습니다.')
@@ -75,9 +82,9 @@ def check_duplicate(request):
                 return JsonResponse({'success': True, 'message': '사용 가능한 ID입니다.'})
         
         elif field_type == 'nickname':
-            # 여기서는 User 모델의 first_name을 nickname으로 사용한다고 가정
-            # 실제로는 별도의 Profile 모델이 있다면 그 모델에서 검사
-            if User.objects.filter(first_name=value).exists():
+            # Profile.nickname 중복 검사
+            from accounts.models import Profile
+            if Profile.objects.filter(nickname=value).exists():
                 return JsonResponse({'success': False, 'message': '이미 사용 중인 닉네임입니다.'})
             else:
                 return JsonResponse({'success': True, 'message': '사용 가능한 닉네임입니다.'})
@@ -95,10 +102,12 @@ def change_nickname(request):
         new_nickname = data.get('nickname', '').strip()
         if not new_nickname:
             return JsonResponse({'success': False, 'message': '닉네임을 입력해주세요.'})
-        if User.objects.filter(first_name=new_nickname).exclude(id=request.user.id).exists():
+        from accounts.models import Profile
+        if Profile.objects.filter(nickname=new_nickname).exclude(user=request.user).exists():
             return JsonResponse({'success': False, 'message': '이미 사용 중인 닉네임입니다.'})
-        request.user.first_name = new_nickname
-        request.user.save()
+        # user.profile.nickname에 저장
+        request.user.profile.nickname = new_nickname
+        request.user.profile.save()
         return JsonResponse({'success': True, 'message': '닉네임이 변경되었습니다.'})
     return JsonResponse({'success': False, 'message': '잘못된 요청입니다.'})
 
